@@ -1,0 +1,1687 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="600">
+  <title>CHAMA!</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #ffffff;
+      --card-hover: #f7f7f7;
+      --text: #111111;
+      --muted: #666666;
+      --border: #e5e5e5;
+      --accent: #111111;
+      --header-bg: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --card-hover: #1a1a1a;
+      --text: #f0f0f0;
+      --muted: #999999;
+      --border: #222222;
+      --accent: #ffffff;
+      --header-bg: #0a0a0a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    header {
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status { font-size: 0.8rem; color: var(--muted); }
+
+    button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    button:hover { background: var(--card-hover); }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .source {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* Scrollable Fighter Tweets column */
+    .source.tweets {
+      max-height: 620px;
+      overflow-y: auto;
+      padding-right: 0.4rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .source.tweets::-webkit-scrollbar {
+      width: 6px;
+    }
+    .source.tweets::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .source.tweets::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+    .source.tweets::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+    /* sticky header inside the scroll area */
+    .source.tweets .source-header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 2;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .source-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.25rem;
+    }
+
+    .source-header h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .source-header a {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .source-header a:hover { color: var(--text); }
+
+    .card {
+      display: flex;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    .card:last-child { border-bottom: none; }
+    .card:hover { background: var(--card-hover); }
+
+    .thumb {
+      width: 96px;
+      height: 68px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 8px;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .card:hover .thumb {
+      transform: scale(1.04);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+
+    [data-theme="dark"] .thumb {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    [data-theme="dark"] .card:hover .thumb {
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-meta {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .card-meta .dot {
+      width: 3px;
+      height: 3px;
+      background: var(--muted);
+      border-radius: 50%;
+    }
+
+    .card-title {
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .rankings {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 2rem 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .rankings h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .rankings .sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .rankings .sub a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+
+    .rank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .rank-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem 1.1rem;
+      transition: border-color 0.15s;
+    }
+
+    .rank-card:hover {
+      border-color: #ccc;
+    }
+
+    [data-theme="dark"] .rank-card:hover {
+      border-color: #444;
+    }
+
+    .rank-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rank-card-header img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .rank-card h3 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .rank-list {
+      list-style: none;
+      font-size: 0.84rem;
+    }
+
+    .rank-list li {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.3rem 0;
+    }
+
+    .rank-list .num {
+      width: 1.5rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .rank-list .champ {
+      font-weight: 600;
+    }
+
+
+    .podcast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.75rem;
+    }
+    .podcast-card {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .podcast-card:hover {
+      border-color: #ccc;
+      background: var(--card-hover);
+    }
+    [data-theme="dark"] .podcast-card:hover {
+      border-color: #444;
+    }
+    .podcast-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    [data-theme="dark"] .podcast-card img {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .podcast-card .body {
+      flex: 1;
+      min-width: 0;
+    }
+    .podcast-card .show {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .podcast-card .ep {
+      font-size: 0.86rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .podcast-card .meta {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+
+    .podcast-card .thumb-fallback {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .podcast-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+  
+    /* ===== UFC Countdown Topbar ===== */
+    .ufc-next-banner {
+      background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      border-bottom: 2px solid #e94560;
+      position: relative;
+      z-index: 100;
+    }
+
+    [data-theme="dark"] .ufc-next-banner {
+      background: linear-gradient(90deg, #0d0d1a 0%, #0a1628 50%, #061020 100%);
+      border-bottom-color: #e94560;
+    }
+
+    .ufc-next-banner .label {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      opacity: 0.85;
+      color: #e94560;
+    }
+
+    .ufc-next-banner .event-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .ufc-next-banner .timer {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      font-size: 1.05rem;
+      background: rgba(233, 69, 96, 0.25);
+      padding: 0.2rem 0.7rem;
+      border-radius: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .ufc-next-banner .timer.live {
+      background: #e94560;
+      animation: pulse 1.2s infinite;
+    }
+
+    .ufc-next-banner .loc {
+      opacity: 0.7;
+      font-size: 0.8rem;
+    }
+
+    /* Scrolling secondary bar */
+    .ufc-topbar {
+      background: linear-gradient(90deg, #e94560 0%, #c23a51 40%, #9b2c3f 100%);
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 99;
+    }
+
+    [data-theme="dark"] .ufc-topbar {
+      background: linear-gradient(90deg, #c23a51 0%, #9b2c3f 40%, #6b1e2c 100%);
+    }
+
+    .ufc-topbar-track {
+      display: inline-flex;
+      gap: 2.5rem;
+      padding: 0.5rem 1.5rem;
+      animation: scroll-left 50s linear infinite;
+    }
+
+    .ufc-topbar-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .event-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.8rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .event-item .name {
+      font-weight: 600;
+    }
+
+    .event-item .countdown {
+      font-variant-numeric: tabular-nums;
+      background: rgba(0,0,0,0.25);
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .event-item .live {
+      background: #fff;
+      color: #e94560;
+      font-weight: 700;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.55; }
+    }
+
+    @media (max-width: 600px) {
+      .ufc-next-banner { font-size: 0.82rem; gap: 0.6rem; padding: 0.55rem 1rem; }
+      .ufc-next-banner .event-name { font-size: 0.85rem; }
+      .ufc-next-banner .timer { font-size: 0.9rem; }
+      .ufc-topbar-track { gap: 1.5rem; }
+      .event-item { font-size: 0.75rem; }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">CHAMA!</div>
+      <div class="controls">
+        <span class="status" id="last-updated">10:44 AM</span>
+        <button id="theme-toggle" onclick="toggleTheme()">Dark</button>
+        <button onclick="location.reload()">Refresh</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="ufc-next-banner" id="ufc-next-banner">
+    <span class="label">Next Event</span>
+    <span class="event-name" id="next-event-name">Loading…</span>
+    <span class="timer" id="next-event-timer">--</span>
+    <span class="loc" id="next-event-loc"></span>
+  </div>
+  <div class="ufc-topbar">
+    <div class="ufc-topbar-track" id="ufc-countdown-track">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+
+  <main>
+    <div class="note">
+      Verified sources only · Auto-refreshes every 10 minutes
+    </div>
+
+    <div class="sources">
+
+      <!-- UFC -->
+      <section class="source">
+        <div class="source-header">
+          <h2>UFC</h2>
+          <a href="https://www.ufc.com/" target="_blank" rel="noopener">ufc.com</a>
+        </div>
+        <a class="card" href="https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-moicano-vs-nolan" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301375830.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Fight Coverage <span class="dot"></span> Oct 27, 2026 · ~5h ago</div>
+            <div class="card-title">Fight By Fight Preview | UFC Fight Night: Moicano vs Nolan</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.ufc.com/news/dana-white-ufc-333-alexander-volkanovski-petr-yan-merab-dvalishvili-more" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2296157217.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Fight Coverage <span class="dot"></span> Oct 27, 2026 · ~3h ago</div>
+            <div class="card-title">Dana White on UFC 333, Alexander Volkanovski, Petr Yan, Merab Dvalishvili &amp; More</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.ufc.com/news/bonus-coverage-ufc-333-volkanovski-vs-evloev" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-1244153109.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Results <span class="dot"></span> Oct 26, 2026 · 1d ago</div>
+            <div class="card-title">Bonus Coverage | UFC 333: Volkanovski vs Evloev</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.ufc.com/video/161242" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301375921.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Interview <span class="dot"></span> Oct 26, 2026 · 1d ago</div>
+            <div class="card-title">Alexander Volkanovski Post-Fight Interview | UFC 333</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.ufc.com/video/136332" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301631695.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Highlights <span class="dot"></span> Oct 27, 2026 · ~5h ago</div>
+            <div class="card-title">Renato Moicano | Rear Naked Choke Artist</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- MMA Fighting -->
+      <section class="source">
+        <div class="source-header">
+          <h2>MMA Fighting</h2>
+          <a href="https://www.mmafighting.com/" target="_blank" rel="noopener">mmafighting.com</a>
+        </div>
+        <a class="card" href="https://www.mmafighting.com/ufc/517824/on-to-the-next-one-matches-to-make-after-ufc-333" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2298422688.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Podcast <span class="dot"></span> Oct 26, 2026 · 7:00 PM ET</div>
+            <div class="card-title">On To the Next One: Matches to make after UFC 333</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.mmafighting.com/ufc/517941/arman-tsarukyan-justin-gaethje-trying-to-duck-me-open-to-alexander-volkanovski-vacant-title-fight" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301374107.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC <span class="dot"></span> Oct 26, 2026 · 3:00 PM ET</div>
+            <div class="card-title">Arman Tsarukyan: Justin Gaethje ‘trying to duck me,’ open to Volkanovski title fight</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.mmafighting.com/latest-news/517985/ufc-veteran-disqualified-for-serious-violation-tko-win-overturned" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2281630482.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Latest <span class="dot"></span> Oct 26, 2026 · 5:00 PM ET</div>
+            <div class="card-title">UFC veteran disqualified for ‘serious violation,’ TKO win overturned</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.mmafighting.com/ufc/517964/dominick-reyes-continues-to-slam-daniel-cormier-for-f-plus-grade-ufc-333-commentary" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2279495565.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC <span class="dot"></span> Oct 26, 2026 · afternoon</div>
+            <div class="card-title">Dominick Reyes continues to slam Daniel Cormier for ‘F-plus’ grade commentary</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.mmafighting.com/ufc/517840/islam-makhachev-reveals-why-he-turned-down-january-fight-with-carlos-prates" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-1250429257.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC <span class="dot"></span> Oct 25, 2026</div>
+            <div class="card-title">Islam Makhachev reveals why he turned down January fight with Carlos Prates</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- MMA Junkie -->
+      <section class="source">
+        <div class="source-header">
+          <h2>MMA Junkie</h2>
+          <a href="https://mmajunkie.usatoday.com/" target="_blank" rel="noopener">mmajunkie.usatoday.com</a>
+        </div>
+        <a class="card" href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/10/26/ufc-333-winner-loser-reactions-social-media-yan-merab-volkanovski-evolev/92426612007/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2295612148.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC 333 <span class="dot"></span> Oct 26, 2026 · evening</div>
+            <div class="card-title">The Thrill and Agony: UFC 333 winner and loser reactions</div>
+          </div>
+        </a>
+        <a class="card" href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/10/26/ufc-demetrious-johnson-backs-jean-silva-next-alexander-volkanovski-title/92414849007/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301632077.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">Former champ says 'not scared' Jean Silva should get next UFC title shot</div>
+          </div>
+        </a>
+        <a class="card" href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/10/26/ufc-336-joshua-van-vs-manel-kape-odds-flyweight-title-toronto/92445798007/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2296157389.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Odds <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">UFC 336: Joshua Van vs. Manel Kape odds for flyweight title</div>
+          </div>
+        </a>
+        <a class="card" href="https://mmajunkie.usatoday.com/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2274150589.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">Volkanovski has intriguing backup plan for next fight</div>
+          </div>
+        </a>
+        <a class="card" href="https://mmajunkie.usatoday.com/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301632174.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Video <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">Video: Every UFC 333 finish, including Reyes’ head kick</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- Sherdog -->
+      <section class="source">
+        <div class="source-header">
+          <h2>Sherdog</h2>
+          <a href="https://www.sherdog.com/" target="_blank" rel="noopener">sherdog.com</a>
+        </div>
+        <a class="card" href="https://www.sherdog.com/news/news/Islam-Makhachev-questions-Prates-Morales-UFC-title-shot-credentials-203345" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/09/gettyimages-2290664040.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">News <span class="dot"></span> Oct 27, 2026 · morning</div>
+            <div class="card-title">Islam Makhachev questions Prates &amp; Morales' UFC title shot credentials</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.sherdog.com/news/rankings/Sherdogs-official-poundforpound-rankings-Volkanovski-rises-Yan-drops-Dvalishvili-after-UFC-333-203342" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/08/gettyimages-2290665605.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Rankings <span class="dot"></span> Oct 26, 2026 · 15h ago</div>
+            <div class="card-title">P4P rankings: Volkanovski rises, Yan drops Dvalishvili after UFC 333</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.sherdog.com/news/news/Petr-Yan-favored-in-2-rematches-Volkanovski-underdog-to-Gaethje-203356" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/08/gettyimages-2285693066.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Odds <span class="dot"></span> Oct 27, 2026</div>
+            <div class="card-title">Petr Yan favored in 2 rematches, Volkanovski underdog to Gaethje</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.sherdog.com/news/news/Paddy-Pimblett-says-Movsar-Evloev-quit-against-Alexander-Volkanovski-203350" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/08/gettyimages-2259326738.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">News <span class="dot"></span> Oct 27, 2026</div>
+            <div class="card-title">Paddy Pimblett says Movsar Evloev 'quit' against Alexander Volkanovski</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.sherdog.com/news/news/Sean-OMalley-says-hell-fight-Petr-Yan-next-even-if-UFC-books-Yadong-Song-203349" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-1233674798.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">News <span class="dot"></span> Oct 27, 2026</div>
+            <div class="card-title">Sean O'Malley says he'll fight Petr Yan next even if UFC books Yadong Song</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- ESPN MMA -->
+      <section class="source">
+        <div class="source-header">
+          <h2>ESPN MMA</h2>
+          <a href="https://www.espn.com/mma/" target="_blank" rel="noopener">espn.com/mma</a>
+        </div>
+        <a class="card" href="https://www.espn.com/mma/story/_/id/50270358/volkanovski-keeps-title-2nd-round-ko-evloev" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/Captura-de-Tela-2026-10-26-as-15.21.54.png?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC 333 <span class="dot"></span> Oct 26, 2026 · 16h ago</div>
+            <div class="card-title">Volkanovski, 38, KO's Evloev to retain title, wants to 'keep going'</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.espn.com/mma/ufc/story/_/id/50269828/petr-yan-completes-trilogy-gritty-win-merab-dvalishvili-defend-title" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301375830.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC 333 <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">Yan completes trilogy with gritty win over Dvalishvili to defend title</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.espn.com/mma/story/_/id/50269191/makhachev-defend-title-ufc-books-interim-title-bout" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2296157217.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">White tells Makhachev 'you can't hold up' division, books interim title bout</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.espn.com/ufc/story/_/id/50267857/loneer-kavanagh-shoots-flyweight-title-talk-devastating-finish-ufc-333" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-1244153109.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">UFC 333 <span class="dot"></span> Oct 26, 2026</div>
+            <div class="card-title">Kavanagh secures R1 finish at UFC 333, joins flyweight title talk</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.espn.com/mma/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301631695.jpg?w=200&amp;quality=80" alt="">
+          <div class="card-body">
+            <div class="card-meta">Analysis <span class="dot"></span> Oct 26, 2026 · 19h ago</div>
+            <div class="card-title">Volkanovski due for a change of scenery, Yan bound for new rematch after UFC 333</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- Fighter Tweets (X) -->
+      <section class="source tweets">
+        <div class="source-header">
+          <h2>X · Fighter Tweets</h2>
+          <a href="https://x.com" target="_blank" rel="noopener">x.com</a>
+        </div>
+
+        <!-- Islam Makhachev -->
+        <a class="card" href="https://x.com/MAKHACHEVMMA/status/2114105358218399853" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1850236186201137152/T1jbK11m.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@MAKHACHEVMMA <span class="dot"></span> Oct 24 · 2d ago</div>
+            <div class="card-title">I just beat the guy who chased you around the Octagon for five rounds. Shut up and go train. You’re not on my level. See you soon . #maybe</div>
+          </div>
+        </a>
+        <a class="card" href="https://x.com/MAKHACHEVMMA/status/2114106055773073497" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1850236186201137152/T1jbK11m.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@MAKHACHEVMMA <span class="dot"></span> Oct 24</div>
+            <div class="card-title">As soon as we find out who the real contender is, we’ll be right back!!!</div>
+          </div>
+        </a>
+        <a class="card" href="https://x.com/MAKHACHEVMMA/status/2114081544281457106" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1850236186201137152/T1jbK11m.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@MAKHACHEVMMA <span class="dot"></span> Oct 24</div>
+            <div class="card-title">Let’s go @PetrYanUFC</div>
+          </div>
+        </a>
+
+        <!-- Petr Yan -->
+        <a class="card" href="https://x.com/PetrYanUFC/status/2114328906950132108" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1141610920004788224/78wk-6kl.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@PetrYanUFC <span class="dot"></span> Oct 25 · 1d ago</div>
+            <div class="card-title">Thank you so much @Owner1win one of the best gifts no doubt 🙏🏼</div>
+          </div>
+        </a>
+        <a class="card" href="https://x.com/PetrYanUFC/status/2107880759994569085" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1141610920004788224/78wk-6kl.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@PetrYanUFC <span class="dot"></span> Oct 7</div>
+            <div class="card-title">My collection with @Full_Violence is available now. See you soon Merab 👊🏻</div>
+          </div>
+        </a>
+
+        <!-- Alexander Volkanovski -->
+        <a class="card" href="https://x.com/alexvolkanovski" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1207611134154432513/PAu7LTZv.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@alexvolkanovski <span class="dot"></span> recent</div>
+            <div class="card-title">😅😅😅 (quoting “Alexander Volkanovski is a Movie Star”)</div>
+          </div>
+        </a>
+        <a class="card" href="https://x.com/alexvolkanovski/status/2066387277253939686" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1207611134154432513/PAu7LTZv.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@alexvolkanovski <span class="dot"></span> Jun 15</div>
+            <div class="card-title">Wow!! Absolutely insane ending to a crazy night…well played Dana and Trump! #ufcwhitehouse</div>
+          </div>
+        </a>
+
+        <!-- Justin Gaethje -->
+        <a class="card" href="https://x.com/Justin_Gaethje" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1173993192531742721/8dCWvKBq.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@Justin_Gaethje <span class="dot"></span> Oct 26</div>
+            <div class="card-title">🧈</div>
+          </div>
+        </a>
+
+        <!-- Ilia Topuria -->
+        <a class="card" href="https://x.com/Topuriailia" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1967302527025598466/w153u0mM.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@Topuriailia <span class="dot"></span> recent</div>
+            <div class="card-title">El Matador · Double UFC World Champion 🇪🇸🇬🇪 · Prove them wrong 🌹</div>
+          </div>
+        </a>
+
+        <!-- Khamzat Chimaev -->
+        <a class="card" href="https://x.com/KChimaev/status/2113401355062903289" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1977953901836926976/nFsHgUEy.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@KChimaev <span class="dot"></span> Oct 22</div>
+            <div class="card-title">Who is your daddy?</div>
+          </div>
+        </a>
+        <a class="card" href="https://x.com/KChimaev/status/2108878509330305092" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1977953901836926976/nFsHgUEy.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@KChimaev <span class="dot"></span> Oct 10</div>
+            <div class="card-title">You are biggest bullshit, this shit happens with all of us, don’t be a bitch, this is your champ ? 🤣🤣🤣</div>
+          </div>
+        </a>
+
+        <!-- Arman Tsarukyan -->
+        <a class="card" href="https://x.com/ArmanUfc/status/2101512157179629868" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1285265862166020097/CbKOo2kA.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@ArmanUfc <span class="dot"></span> Sep 20</div>
+            <div class="card-title">Title shot secured 👊🏼</div>
+          </div>
+        </a>
+        <a class="card" href="https://x.com/ArmanUfc/status/2101512093350740376" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1285265862166020097/CbKOo2kA.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@ArmanUfc <span class="dot"></span> Sep 20</div>
+            <div class="card-title">You just got slept by a streamer 🥱</div>
+          </div>
+        </a>
+
+        <!-- Alex Pereira -->
+        <a class="card" href="https://x.com/AlexPereiraUFC/status/2104575230781845969" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1564302287069224964/1amH1kiB.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@AlexPereiraUFC <span class="dot"></span> Sep 28</div>
+            <div class="card-title">Você pode ganhar uma viagem para a minha próxima luta como meu convidado VIP! … Chama! @UFC</div>
+          </div>
+        </a>
+
+        <!-- Tom Aspinall -->
+        <a class="card" href="https://x.com/AspinallMMA" target="_blank" rel="noopener">
+          <img class="thumb" src="https://pbs.twimg.com/profile_images/1508365243159826441/yDp2U1cn.jpg" alt="" style="border-radius:50%;width:48px;height:48px;object-fit:cover;">
+          <div class="card-body">
+            <div class="card-meta">@AspinallMMA <span class="dot"></span> recent</div>
+            <div class="card-title">My UFC 329 predictions 👊🔥 Who you got?</div>
+          </div>
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+
+    <section class="rankings">
+      <h2>UFC Rankings</h2>
+      <p class="sub">Official rankings from <a href="https://www.ufc.com/rankings" target="_blank" rel="noopener">ufc.com/rankings</a> · Updated Oct 2026</p>
+
+      <div class="rank-grid">
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301375830.jpg?w=80&amp;quality=80" alt="">
+            <h3>Men's P4P</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">1</span> <span class="champ">Islam Makhachev</span></li>
+            <li><span class="num">2</span> Alexander Volkanovski</li>
+            <li><span class="num">3</span> Justin Gaethje</li>
+            <li><span class="num">4</span> Petr Yan</li>
+            <li><span class="num">5</span> Ilia Topuria</li>
+            <li><span class="num">6</span> Joshua Van</li>
+            <li><span class="num">7</span> Tom Aspinall</li>
+            <li><span class="num">8</span> Sean Strickland</li>
+            <li><span class="num">9</span> Merab Dvalishvili</li>
+            <li><span class="num">10</span> Alex Pereira</li>
+            <li><span class="num">11</span> Ciryl Gane</li>
+            <li><span class="num">12</span> Khamzat Chimaev</li>
+            <li><span class="num">13</span> Arman Tsarukyan</li>
+            <li><span class="num">14</span> Alexandre Pantoja</li>
+            <li><span class="num">15</span> Carlos Ulberg</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301631695.jpg?w=80&amp;quality=80" alt="">
+            <h3>Heavyweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Tom Aspinall</span></li>
+            <li><span class="num">1</span> Sergei Pavlovich</li>
+            <li><span class="num">2</span> Alex Pereira</li>
+            <li><span class="num">3</span> Alexander Volkov</li>
+            <li><span class="num">4</span> Rizvan Kuniev</li>
+            <li><span class="num">5</span> Josh Hokit</li>
+            <li><span class="num">6</span> Curtis Blaydes</li>
+            <li><span class="num">7</span> Waldo Cortes-Acosta</li>
+            <li><span class="num">8</span> Vitor Petrino</li>
+            <li><span class="num">9</span> Mario Pinto</li>
+            <li><span class="num">10</span> Valter Walker</li>
+            <li><span class="num">11</span> Johnny Walker</li>
+            <li><span class="num">12</span> Serghei Spivac</li>
+            <li><span class="num">13</span> Brando Peričić</li>
+            <li><span class="num">14</span> Anthony Wint</li>
+            <li><span class="num">15</span> Derrick Lewis</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2296157217.jpg?w=80&amp;quality=80" alt="">
+            <h3>Light Heavyweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Alex Pereira</span></li>
+            <li><span class="num">1</span> Magomed Ankalaev</li>
+            <li><span class="num">2</span> Jiří Procházka</li>
+            <li><span class="num">3</span> Paulo Costa</li>
+            <li><span class="num">4</span> Khalil Rountree Jr.</li>
+            <li><span class="num">5</span> Dominick Reyes</li>
+            <li><span class="num">6</span> Navajo Stirling</li>
+            <li><span class="num">7</span> Reinier de Ridder</li>
+            <li><span class="num">8</span> Azamat Murzakanov</li>
+            <li><span class="num">9</span> Alonzo Menifield</li>
+            <li><span class="num">10</span> Bogdan Guskov</li>
+            <li><span class="num">11</span> Robert Whittaker</li>
+            <li><span class="num">12</span> Muhammad Saidov</li>
+            <li><span class="num">13</span> Modestas Bukauskas</li>
+            <li><span class="num">14</span> Abdul Rakhman Yakhyaev</li>
+            <li><span class="num">15</span> Jan Blachowicz</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2281630482.jpg?w=80&amp;quality=80" alt="">
+            <h3>Middleweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Khamzat Chimaev</span></li>
+            <li><span class="num">1</span> Dricus Du Plessis</li>
+            <li><span class="num">2</span> Nassourdine Imavov</li>
+            <li><span class="num">3</span> Brendan Allen</li>
+            <li><span class="num">4</span> Joe Pyfer</li>
+            <li><span class="num">5</span> Caio Borralho</li>
+            <li><span class="num">6</span> Gregory Rodrigues</li>
+            <li><span class="num">7</span> Anthony Hernandez</li>
+            <li><span class="num">8</span> Israel Adesanya</li>
+            <li><span class="num">9</span> Ikram Aliskerov</li>
+            <li><span class="num">10</span> Christian Leroy Duncan</li>
+            <li><span class="num">11</span> Bo Nickal</li>
+            <li><span class="num">12</span> Abus Magomedov</li>
+            <li><span class="num">13</span> Roman Kopylov</li>
+            <li><span class="num">14</span> Edmen Shahbazyan</li>
+            <li><span class="num">15</span> Paulo Costa</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-1244153109.jpg?w=80&amp;quality=80" alt="">
+            <h3>Welterweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Islam Makhachev</span></li>
+            <li><span class="num">1</span> Carlos Prates</li>
+            <li><span class="num">2</span> Ian Machado Garry</li>
+            <li><span class="num">3</span> Michael Morales</li>
+            <li><span class="num">4</span> Jack Della Maddalena</li>
+            <li><span class="num">5</span> Sean Brady</li>
+            <li><span class="num">6</span> Gabriel Bonfim</li>
+            <li><span class="num">7</span> Belal Muhammad</li>
+            <li><span class="num">8</span> Mike Malott</li>
+            <li><span class="num">9</span> Uroš Medić</li>
+            <li><span class="num">10</span> Leon Edwards</li>
+            <li><span class="num">11</span> Kamaru Usman</li>
+            <li><span class="num">12</span> Joaquin Buckley</li>
+            <li><span class="num">13</span> Yaroslav Amosov</li>
+            <li><span class="num">14</span> Kevin Holland</li>
+            <li><span class="num">15</span> Daniel Rodriguez</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2298422688.jpg?w=80&amp;quality=80" alt="">
+            <h3>Lightweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Ilia Topuria</span></li>
+            <li><span class="num">1</span> Arman Tsarukyan</li>
+            <li><span class="num">2</span> Charles Oliveira</li>
+            <li><span class="num">3</span> Max Holloway</li>
+            <li><span class="num">4</span> Paddy Pimblett</li>
+            <li><span class="num">5</span> Quillan Salkilld</li>
+            <li><span class="num">6</span> Benoît Saint Denis</li>
+            <li><span class="num">7</span> Renato Moicano</li>
+            <li><span class="num">8</span> Mateusz Gamrot</li>
+            <li><span class="num">9</span> Mauricio Ruffy</li>
+            <li><span class="num">10</span> Tom Nolan</li>
+            <li><span class="num">11</span> Rafael Fiziev</li>
+            <li><span class="num">12</span> Tofiq Musayev</li>
+            <li><span class="num">13</span> Grant Dawson</li>
+            <li><span class="num">14</span> Esteban Ribovics</li>
+            <li><span class="num">15</span> Justin Gaethje</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301375921.jpg?w=80&amp;quality=80" alt="">
+            <h3>Featherweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Alexander Volkanovski</span></li>
+            <li><span class="num">1</span> Movsar Evloev</li>
+            <li><span class="num">2</span> Diego Lopes</li>
+            <li><span class="num">3</span> Lerone Murphy</li>
+            <li><span class="num">4</span> Aljamain Sterling</li>
+            <li><span class="num">5</span> Jean Silva</li>
+            <li><span class="num">6</span> Yair Rodriguez</li>
+            <li><span class="num">7</span> Arnold Allen</li>
+            <li><span class="num">8</span> Youssef Zalal</li>
+            <li><span class="num">9</span> Kevin Vallejos</li>
+            <li><span class="num">10</span> Steve Garcia</li>
+            <li><span class="num">11</span> Aaron Pico</li>
+            <li><span class="num">12</span> Melquizael Costa</li>
+            <li><span class="num">13</span> Brian Ortega</li>
+            <li><span class="num">14</span> Patricio Pitbull</li>
+            <li><span class="num">15</span> David Onama</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301632077.jpg?w=80&amp;quality=80" alt="">
+            <h3>Bantamweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Petr Yan</span></li>
+            <li><span class="num">1</span> Merab Dvalishvili</li>
+            <li><span class="num">2</span> Sean O'Malley</li>
+            <li><span class="num">3</span> Song Yadong</li>
+            <li><span class="num">4</span> Umar Nurmagomedov</li>
+            <li><span class="num">5</span> Mario Bautista</li>
+            <li><span class="num">6</span> Cory Sandhagen</li>
+            <li><span class="num">7</span> Payton Talbott</li>
+            <li><span class="num">8</span> David Martinez</li>
+            <li><span class="num">9</span> Aiemann Zahabi</li>
+            <li><span class="num">10</span> Raul Rosas Jr.</li>
+            <li><span class="num">11</span> Marlon Vera</li>
+            <li><span class="num">12</span> Deiveson Figueiredo</li>
+            <li><span class="num">13</span> Marcus McGhee</li>
+            <li><span class="num">14</span> Raoni Barcelos</li>
+            <li><span class="num">15</span> Bryce Mitchell</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2279495565.jpg?w=80&amp;quality=80" alt="">
+            <h3>Flyweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Alexandre Pantoja</span></li>
+            <li><span class="num">1</span> Manel Kape</li>
+            <li><span class="num">2</span> Brandon Royval</li>
+            <li><span class="num">3</span> Tatsuro Taira</li>
+            <li><span class="num">4</span> Kyoji Horiguchi</li>
+            <li><span class="num">5</span> Lone'er Kavanagh</li>
+            <li><span class="num">6</span> Asu Almabayev</li>
+            <li><span class="num">7</span> Brandon Moreno</li>
+            <li><span class="num">8</span> Amir Albazi</li>
+            <li><span class="num">9</span> Ramazan Temirov</li>
+            <li><span class="num">10</span> Tim Elliott</li>
+            <li><span class="num">11</span> Steve Erceg</li>
+            <li><span class="num">12</span> Sumudaerji</li>
+            <li><span class="num">13</span> Tagir Ulanbekov</li>
+            <li><span class="num">14</span> Alex Perez</li>
+            <li><span class="num">15</span> Charles Johnson</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-1250429257.jpg?w=80&amp;quality=80" alt="">
+            <h3>Women's Strawweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Zhang Weili</span></li>
+            <li><span class="num">1</span> Virna Jandiroba</li>
+            <li><span class="num">2</span> Tatiana Suarez</li>
+            <li><span class="num">3</span> Denise Gomes</li>
+            <li><span class="num">4</span> Gillian Robertson</li>
+            <li><span class="num">5</span> Fatima Kline</li>
+            <li><span class="num">6</span> Alexia Thainara</li>
+            <li><span class="num">7</span> Loopy Godinez</li>
+            <li><span class="num">8</span> Piera Rodriguez</li>
+            <li><span class="num">9</span> Yan Xiaonan</li>
+            <li><span class="num">10</span> Mizuki</li>
+            <li><span class="num">11</span> Tabatha Ricci</li>
+            <li><span class="num">12</span> Talita Alencar</li>
+            <li><span class="num">13</span> Amanda Lemos</li>
+            <li><span class="num">14</span> Sam Hughes</li>
+            <li><span class="num">15</span> Marina Rodriguez</li>
+          </ol>
+        </div>
+
+        <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2295612148.jpg?w=80&amp;quality=80" alt="">
+            <h3>Women's Flyweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Valentina Shevchenko</span></li>
+            <li><span class="num">1</span> Alexa Grasso</li>
+            <li><span class="num">2</span> Jasmine Jasudavicius</li>
+            <li><span class="num">3</span> Manon Fiorot</li>
+            <li><span class="num">4</span> Erin Blanchfield</li>
+            <li><span class="num">5</span> Rose Namajunas</li>
+            <li><span class="num">6</span> Zhang Weili</li>
+            <li><span class="num">7</span> Wang Cong</li>
+            <li><span class="num">8</span> Maycee Barber</li>
+            <li><span class="num">9</span> Tracy Cortez</li>
+            <li><span class="num">10</span> Casey O'Neill</li>
+            <li><span class="num">11</span> Miranda Maverick</li>
+            <li><span class="num">12</span> Regina Tarin</li>
+            <li><span class="num">13</span> Karine Silva</li>
+            <li><span class="num">14</span> Carli Judice</li>
+            <li><span class="num">15</span> Natalia Silva</li>
+          </ol>
+        </div>
+
+                <div class="rank-card">
+          <div class="rank-card-header">
+            <img src="https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2301374107.jpg?w=80&amp;quality=80" alt="">
+            <h3>Women's Bantamweight</h3>
+          </div>
+          <ol class="rank-list">
+            <li><span class="num">C</span> <span class="champ">Joselyne Edwards</span></li>
+            <li><span class="num">1</span> Ailin Perez</li>
+            <li><span class="num">2</span> Norma Dumont</li>
+            <li><span class="num">3</span> Luana Santos</li>
+            <li><span class="num">4</span> Julianna Peña</li>
+            <li><span class="num">5</span> Yana Santos</li>
+            <li><span class="num">6</span> Jacqueline Cavalcanti</li>
+            <li><span class="num">7</span> Michelle Montague</li>
+            <li><span class="num">8</span> Chelsea Chandler</li>
+            <li><span class="num">9</span> Karol Rosa</li>
+            <li><span class="num">10</span> Bia Mesquita</li>
+            <li><span class="num">11</span> Alice Pereira</li>
+            <li><span class="num">12</span> Nora Cornolle</li>
+            <li><span class="num">13</span> Macy Chiasson</li>
+            <li><span class="num">14</span> Melissa Croden</li>
+            <li><span class="num">15</span> Raquel Pennington</li>
+          </ol>
+        </div>
+      </div><!-- end rank-grid -->
+
+      <!-- MMA Podcasts -->
+      <div class="podcasts" style="margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--border);">
+        <h2>MMA Podcasts</h2>
+        <p class="sub">Latest episodes from the biggest voices in MMA</p>
+
+        <div class="podcast-grid">
+
+          <a href="https://podcasts.apple.com/podcast/the-daniel-cormier-show/id1673570585" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/ed/61/a2/ed61a27d-7e98-23a2-2665-756a9e40b8b3/mza_8201341821507455390.jpg/200x200bb.jpg" alt="Daniel Cormier Show">
+            <div class="body">
+              <div class="show">The Daniel Cormier Show</div>
+              <div class="ep">Volkanovski on finishing Evloev + Islam cooking?</div>
+              <div class="meta">Oct 27 · recent</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/podcast/the-daniel-cormier-show/id1673570585" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/ed/61/a2/ed61a27d-7e98-23a2-2665-756a9e40b8b3/mza_8201341821507455390.jpg/200x200bb.jpg" alt="Daniel Cormier Show">
+            <div class="body">
+              <div class="show">The Daniel Cormier Show</div>
+              <div class="ep">Petr Yan warns Merab: he’ll “disappear”</div>
+              <div class="meta">Oct 26</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/podcast/the-ariel-helwani-show/id1724284031" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/92/fd/e8/92fde809-4488-c40f-a67c-e0396ddb8974/mza_5696250919643748547.jpg/200x200bb.jpg" alt="Ariel Helwani Show">
+            <div class="body">
+              <div class="show">The Ariel Helwani Show</div>
+              <div class="ep">UFC 333: Card of the Year? + P4P trilogies</div>
+              <div class="meta">Oct 27</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/podcast/the-ariel-helwani-show/id1724284031" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/92/fd/e8/92fde809-4488-c40f-a67c-e0396ddb8974/mza_5696250919643748547.jpg/200x200bb.jpg" alt="Ariel Helwani Show">
+            <div class="body">
+              <div class="show">The Ariel Helwani Show</div>
+              <div class="ep">Alex Pereira &amp; Plinio Cruz in studio</div>
+              <div class="meta">Oct 21 · 4h 17m</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/youre-welcome-with-chael-sonnen/id929298707" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/69/3a/56/693a56e2-9663-938e-4486-72a255e22b4d/mza_12250217031873655289.jpg/200x200bb.jpg" alt="Chael Sonnen">
+            <div class="body">
+              <div class="show">You’re Welcome! · Chael Sonnen</div>
+              <div class="ep">Volk wants Gaethje. BMF belt identity crisis.</div>
+              <div class="meta">Oct 26</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/morning-kombat/id1471183444" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/b4/ca/53/b4ca534f-1d3a-ecca-7775-655ac434169a/mza_1925472844771616836.jpg/200x200bb.jpg" alt="Morning Kombat">
+            <div class="body">
+              <div class="show">Morning Kombat</div>
+              <div class="ep">UFC 333 Results: Volkanovski stops Evloev</div>
+              <div class="meta">Oct 27</div>
+            </div>
+          </a>
+
+          <a href="https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Joe_Rogan.png" alt="Joe Rogan Experience">
+            <div class="body">
+              <div class="show">Joe Rogan Experience · MMA</div>
+              <div class="ep">JRE MMA #187 – Robert Whittaker</div>
+              <div class="meta">Oct 22 · 2h 48m</div>
+            </div>
+          </a>
+
+          <a href="https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Joe_Rogan.png" alt="Joe Rogan Experience">
+            <div class="body">
+              <div class="show">Joe Rogan Experience · MMA</div>
+              <div class="ep">JRE MMA #186 – Sean Sharaf</div>
+              <div class="meta">Oct 1 · 2h 15m</div>
+            </div>
+          </a>
+
+          <a href="https://www.mmafighting.com/podcasts" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://pbs.twimg.com/profile_images/1438605130429911040/G6JZkLd-_400x400.jpg" alt="MMA Fighting">
+            <div class="body">
+              <div class="show">MMA Fighting</div>
+              <div class="ep">UFC 333 Post-Fight: Volk &amp; Yan defenses</div>
+              <div class="meta">Oct 25</div>
+            </div>
+          </a>
+
+          <a href="https://www.mmafighting.com/podcasts" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://pbs.twimg.com/profile_images/1438605130429911040/G6JZkLd-_400x400.jpg" alt="MMA Fighting">
+            <div class="body">
+              <div class="show">MMA Fighting</div>
+              <div class="ep">On To the Next One: Matches after UFC 333</div>
+              <div class="meta">Oct 26</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/believe-you-me-with-michael-bisping/id1212985132" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://pbs.twimg.com/profile_images/1438605130429911040/G6JZkLd-_400x400.jpg" alt="Believe You Me">
+            <div class="body">
+              <div class="show">Believe You Me · Bisping &amp; Felder</div>
+              <div class="ep">706: Volk The Goat</div>
+              <div class="meta">Oct 27</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/ufc-unfiltered-with-jim-norton-and-matt-serra/id1124228879" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://pbs.twimg.com/profile_images/1438605130429911040/G6JZkLd-_400x400.jpg" alt="UFC Unfiltered">
+            <div class="body">
+              <div class="show">UFC Unfiltered · Norton &amp; Serra</div>
+              <div class="ep">Post-UFC 333 reaction + title picture talk</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/the-anik-florian-podcast/id985956967" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/92/fd/e8/92fde809-4488-c40f-a67c-e0396ddb8974/mza_5696250919643748547.jpg/200x200bb.jpg" alt="Anik &amp; Florian">
+            <div class="body">
+              <div class="show">Anik &amp; Florian Podcast</div>
+              <div class="ep">UFC 333 grades + what’s next for the champs</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+          <a href="#" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/b4/ca/53/b4ca534f-1d3a-ecca-7775-655ac434169a/mza_1925472844771616836.jpg/200x200bb.jpg" alt="MMA Junkie Radio">
+            <div class="body">
+              <div class="show">MMA Junkie Radio</div>
+              <div class="ep">Winner/Loser reactions from UFC 333</div>
+              <div class="meta">Oct 26</div>
+            </div>
+          </a>
+
+          <a href="#" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/69/3a/56/693a56e2-9663-938e-4486-72a255e22b4d/mza_12250217031873655289.jpg/200x200bb.jpg" alt="Big Brown Breakdown">
+            <div class="body">
+              <div class="show">The Big Brown Breakdown</div>
+              <div class="ep">Schaub on Volk’s KO &amp; Yan’s trilogy win</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+          <a href="#" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/ed/61/a2/ed61a27d-7e98-23a2-2665-756a9e40b8b3/mza_8201341821507455390.jpg/200x200bb.jpg" alt="Good Guy Bad Guy">
+            <div class="body">
+              <div class="show">Good Guy / Bad Guy</div>
+              <div class="ep">DC &amp; Chael debate UFC 333 outcomes</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+
+          <a href="https://podcasts.apple.com/us/podcast/the-anik-florian-podcast/id985956967" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/52/36/d4/5236d431-c044-c657-2b2f-56eca0082835/mza_16023813799966012687.jpg/200x200bb.jpg" alt="Anik &amp; Florian">
+            <div class="body">
+              <div class="show">Anik &amp; Florian Podcast</div>
+              <div class="ep">UFC 333 grades + Ray Longo minute</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/pound-4-pound-with-kamaru-usman-henry-cejudo/id1732378558" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/ed/61/a2/ed61a27d-7e98-23a2-2665-756a9e40b8b3/mza_8201341821507455390.jpg/200x200bb.jpg" alt="Pound 4 Pound">
+            <div class="body">
+              <div class="show">Pound 4 Pound · Usman &amp; Cejudo</div>
+              <div class="ep">Absolute CHAOS in Middleweight</div>
+              <div class="meta">Oct 15</div>
+            </div>
+          </a>
+
+          <a href="https://podcasts.apple.com/us/podcast/pound-4-pound-with-kamaru-usman-henry-cejudo/id1732378558" target="_blank" rel="noopener" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/ed/61/a2/ed61a27d-7e98-23a2-2665-756a9e40b8b3/mza_8201341821507455390.jpg/200x200bb.jpg" alt="Pound 4 Pound">
+            <div class="body">
+              <div class="show">Pound 4 Pound · Usman &amp; Cejudo</div>
+              <div class="ep">UFC 332 CHAOS · Talbott vs O’Malley?</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+          <a href="#" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts116/v4/69/3a/56/693a56e2-9663-938e-4486-72a255e22b4d/mza_12250217031873655289.jpg/200x200bb.jpg" alt="Big Brown Breakdown">
+            <div class="body">
+              <div class="show">The Big Brown Breakdown</div>
+              <div class="ep">Schaub on Volk’s KO &amp; Yan’s trilogy</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+
+          <a href="#" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/b4/ca/53/b4ca534f-1d3a-ecca-7775-655ac434169a/mza_1925472844771616836.jpg/200x200bb.jpg" alt="MMA Junkie Radio">
+            <div class="body">
+              <div class="show">MMA Junkie Radio</div>
+              <div class="ep">Winner/Loser reactions from UFC 333</div>
+              <div class="meta">Oct 26</div>
+            </div>
+          </a>
+
+          <a href="#" class="podcast-card">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/92/fd/e8/92fde809-4488-c40f-a67c-e0396ddb8974/mza_5696250919643748547.jpg/200x200bb.jpg" alt="Submission Radio">
+            <div class="body">
+              <div class="show">Submission Radio</div>
+              <div class="ep">Australian take on Volk’s title defense</div>
+              <div class="meta">Oct 2026</div>
+            </div>
+          </a>
+        </div>
+
+      <!-- Future Matchmaking Analysis (dynamic) -->
+      <div class="matchmaking" style="margin-top: 2.75rem; padding-top: 1.75rem; border-top: 1px solid var(--border);">
+        <h2>Future Matchmaking · Grok Analysis</h2>
+        <p class="sub" id="mm-note">Updated 2026-10-27 · Based on current rankings + UFC 333 results · Ask me anytime to refresh</p>
+        <div class="rank-grid" id="mm-grid" style="gap: 1.25rem;">
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Heavyweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Ciryl Gane vs Josh Hokit (title)</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Aspinall’s injury opened the door. Gane is the logical interim/undisputed path; Hokit has the momentum and size. Winner becomes the clear #1 until Aspinall returns.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Light Heavyweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Alex Pereira vs Magomed Ankalaev 2 or top contender</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Pereira is still the biggest draw. A clean rematch or a ranked contender (Hill / Ankalaev path) makes sense. Division needs clearer #1 contender ordering.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Middleweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Dricus du Plessis defense vs Brendan Allen or Khamzat path</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Allen’s recent form and callouts put him in the conversation. Khamzat remains the dangerous wildcard if healthy. Strickland drama keeps the division noisy.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Welterweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Islam Makhachev vs Carlos Prates or Michael Morales</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Islam’s move up is the story. Prates/Morales have been mentioned for an interim if timing doesn’t work for a full title fight.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Lightweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Ilia Topuria vs Arman Tsarukyan or Justin Gaethje</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Topuria is the clear champion. Arman has the ranking and style; Gaethje remains the biggest money / BMF-style option.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Featherweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Volkanovski next (Gaethje or ranked contender)</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Volk’s dominant UFC 333 defense re-establishes him as the man. Logical next: big-name crossover (Gaethje) or a ranked killer (Lopes / Murphy).</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Bantamweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Petr Yan vs Sean O’Malley or Song Yadong</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Yan closed the Merab trilogy at UFC 333. O’Malley is the biggest remaining draw; Yadong is the ranked, active threat.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Flyweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Joshua Van vs Manel Kape or Pantoja path</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Van is the new champion after a statement run. Kape has the ranking and chaos factor; a Pantoja rubber match still sells.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Women’s Strawweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Zhang Weili vs Tatiana Suarez or Jandiroba</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Weili remains the clear #1. Suarez is the ranked wrestler threat; Jandiroba has the experience.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Women’s Flyweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Valentina Shevchenko vs Natalia Silva or Grasso path</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Valentina is still the standard. Silva’s recent form makes her a legitimate contender; Grasso trilogy remains the biggest storyline if both sides want it.</p>
+            </div>
+          </div>
+        
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>Women’s Bantamweight</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> Joselyne Edwards vs Ailin Perez or Norma Dumont</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">Division is thinner but active. Perez and Dumont are the clearest ranked options right now.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></section>
+
+  <footer>
+    CHAMA! — UFC · MMA Fighting · MMA Junkie · Sherdog · ESPN MMA · X Fighter Tweets
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+        btn.textContent = 'Dark';
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.textContent = 'Light';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById('theme-toggle').textContent = 'Light';
+    }
+
+    document.getElementById('last-updated').textContent =
+      new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  </script>
+<script>
+
+    // Dynamic Matchmaking loader
+    async function loadMatchmaking() {
+      try {
+        const res = await fetch('matchmaking.json?t=' + Date.now());
+        const data = await res.json();
+        document.getElementById('mm-note').textContent =
+          'Updated ' + data.updated + ' · ' + data.note + ' · Ask me anytime to refresh';
+        const grid = document.getElementById('mm-grid');
+        if (!grid) return;
+        grid.innerHTML = data.divisions.map(d => `
+          <div class="rank-card">
+            <div class="rank-card-header"><h3>${d.name}</h3></div>
+            <div style="font-size:0.88rem; line-height:1.45;">
+              <p style="margin:0 0 0.6rem;"><strong>Next up:</strong> ${d.next}</p>
+              <p style="margin:0; color:var(--muted); font-size:0.82rem;">${d.analysis}</p>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        const note = document.getElementById('mm-note');
+        if (note) note.textContent = 'Could not load matchmaking data. Make sure matchmaking.json is in the same folder.';
+        console.error(err);
+      }
+    }
+    loadMatchmaking();
+
+</script>
+
+
+<script>
+
+    // ===== UFC Upcoming Events Countdown =====
+    const UFC_EVENTS = [
+      { name: "UFC Fight Night: Moicano vs Nolan", date: "2026-10-31T20:00:00-04:00", loc: "Las Vegas" },
+      { name: "UFC Fight Night: Bonfim vs Brady", date: "2026-11-07T20:00:00-05:00", loc: "Las Vegas" },
+      { name: "UFC 334: Gane vs Hokit", date: "2026-11-14T21:00:00-05:00", loc: "New York" },
+      { name: "UFC Fight Night: Procházka vs Stirling", date: "2026-11-21T13:00:00-05:00", loc: "Doha" },
+      { name: "UFC 335: Oliveira vs Lopes", date: "2026-12-12T21:00:00-05:00", loc: "Las Vegas" },
+      { name: "UFC 336: Van vs Kape", date: "2027-01-30T21:00:00-05:00", loc: "Toronto" },
+    ];
+
+    function formatCountdown(ms) {
+      if (ms <= 0) return "LIVE";
+      const s = Math.floor(ms / 1000);
+      const d = Math.floor(s / 86400);
+      const h = Math.floor((s % 86400) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      if (d > 0) return d + "d " + h + "h " + m + "m";
+      if (h > 0) return h + "h " + m + "m " + sec + "s";
+      return m + "m " + sec + "s";
+    }
+
+    function getUpcoming() {
+      const now = Date.now();
+      return UFC_EVENTS
+        .map(e => ({ ...e, ts: new Date(e.date).getTime() }))
+        .filter(e => e.ts > now - 4 * 3600 * 1000)
+        .sort((a, b) => a.ts - b.ts);
+    }
+
+    function renderNextEvent() {
+      const upcoming = getUpcoming();
+      const nameEl = document.getElementById("next-event-name");
+      const timerEl = document.getElementById("next-event-timer");
+      const locEl = document.getElementById("next-event-loc");
+      if (!nameEl || !timerEl) return;
+
+      if (upcoming.length === 0) {
+        nameEl.textContent = "No upcoming events";
+        timerEl.textContent = "";
+        timerEl.classList.remove("live");
+        if (locEl) locEl.textContent = "";
+        return;
+      }
+
+      const next = upcoming[0];
+      const remaining = next.ts - Date.now();
+      const isLive = remaining <= 0;
+
+      nameEl.textContent = next.name;
+      timerEl.textContent = isLive ? "LIVE NOW" : formatCountdown(remaining);
+      timerEl.classList.toggle("live", isLive);
+      if (locEl) locEl.textContent = next.loc;
+    }
+
+    function renderCountdownBar() {
+      const track = document.getElementById("ufc-countdown-track");
+      if (!track) return;
+
+      const upcoming = getUpcoming();
+
+      if (upcoming.length === 0) {
+        track.innerHTML = '<div class="event-item"><span class="name">No upcoming UFC events scheduled</span></div>';
+        return;
+      }
+
+      const items = [...upcoming, ...upcoming].map(e => {
+        const remaining = e.ts - Date.now();
+        const isLive = remaining <= 0;
+        return '<div class="event-item">' +
+          '<span class="name">' + e.name + '</span>' +
+          '<span class="countdown ' + (isLive ? "live" : "") + '">' +
+            (isLive ? "LIVE NOW" : formatCountdown(remaining)) +
+          '</span>' +
+          '<span style="opacity:0.75;font-size:0.72rem">' + e.loc + '</span>' +
+          '</div>';
+      }).join("");
+
+      track.innerHTML = items;
+    }
+
+    function tick() {
+      renderNextEvent();
+      renderCountdownBar();
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+  </script>
+</body></html>
