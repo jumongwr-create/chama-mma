@@ -1,0 +1,61 @@
+{
+  "updated": "2026-10-27",
+  "note": "Based on current rankings + UFC 333 results",
+  "divisions": [
+    {
+      "name": "Heavyweight",
+      "next": "Ciryl Gane vs Josh Hokit (title)",
+      "analysis": "Aspinall’s injury opened the door. Gane is the logical interim/undisputed path; Hokit has the momentum and size. Winner becomes the clear #1 until Aspinall returns."
+    },
+    {
+      "name": "Light Heavyweight",
+      "next": "Alex Pereira vs Magomed Ankalaev 2 or top contender",
+      "analysis": "Pereira is still the biggest draw. A clean rematch or a ranked contender (Hill / Ankalaev path) makes sense. Division needs clearer #1 contender ordering."
+    },
+    {
+      "name": "Middleweight",
+      "next": "Dricus du Plessis defense vs Brendan Allen or Khamzat path",
+      "analysis": "Allen’s recent form and callouts put him in the conversation. Khamzat remains the dangerous wildcard if healthy. Strickland drama keeps the division noisy."
+    },
+    {
+      "name": "Welterweight",
+      "next": "Islam Makhachev vs Carlos Prates or Michael Morales",
+      "analysis": "Islam’s move up is the story. Prates/Morales have been mentioned for an interim if timing doesn’t work for a full title fight."
+    },
+    {
+      "name": "Lightweight",
+      "next": "Ilia Topuria vs Arman Tsarukyan or Justin Gaethje",
+      "analysis": "Topuria is the clear champion. Arman has the ranking and style; Gaethje remains the biggest money / BMF-style option."
+    },
+    {
+      "name": "Featherweight",
+      "next": "Volkanovski next (Gaethje or ranked contender)",
+      "analysis": "Volk’s dominant UFC 333 defense re-establishes him as the man. Logical next: big-name crossover (Gaethje) or a ranked killer (Lopes / Murphy)."
+    },
+    {
+      "name": "Bantamweight",
+      "next": "Petr Yan vs Sean O’Malley or Song Yadong",
+      "analysis": "Yan closed the Merab trilogy at UFC 333. O’Malley is the biggest remaining draw; Yadong is the ranked, active threat."
+    },
+    {
+      "name": "Flyweight",
+      "next": "Joshua Van vs Manel Kape or Pantoja path",
+      "analysis": "Van is the new champion after a statement run. Kape has the ranking and chaos factor; a Pantoja rubber match still sells."
+    },
+    {
+      "name": "Women’s Strawweight",
+      "next": "Zhang Weili vs Tatiana Suarez or Jandiroba",
+      "analysis": "Weili remains the clear #1. Suarez is the ranked wrestler threat; Jandiroba has the experience."
+    },
+    {
+      "name": "Women’s Flyweight",
+      "next": "Valentina Shevchenko vs Natalia Silva or Grasso path",
+      "analysis": "Valentina is still the standard. Silva’s recent form makes her a legitimate contender; Grasso trilogy remains the biggest storyline if both sides want it."
+    },
+    {
+      "name": "Women’s Bantamweight",
+      "next": "Joselyne Edwards vs Ailin Perez or Norma Dumont",
+      "analysis": "Division is thinner but active. Perez and Dumont are the clearest ranked options right now."
+    }
+  ]
+}
