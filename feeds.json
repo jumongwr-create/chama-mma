@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-28T09:35:09.813Z",
+  "generatedAt": "2026-10-28T10:32:42.807Z",
   "sources": [
     {
       "id": "ufc",
       "name": "UFC",
       "site": "https://www.ufc.com/",
-      "updated": "2026-10-28T09:35:09.711Z",
+      "updated": "2026-10-28T10:32:42.624Z",
       "items": [],
       "error": "Status code 403"
     },
@@ -13,41 +13,41 @@
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-28T09:35:09.813Z",
+      "updated": "2026-10-28T10:32:42.755Z",
       "items": [
         {
           "title": "Quillan Salkilld faces Benoit Saint Denis in main event of UFC Sydney",
           "link": "https://www.mmafighting.com/ufc/518150/quillan-salkilld-faces-benoit-saint-denis-in-main-event-of-ufc-sydney",
           "date": "2026-10-28T03:49:34.000Z",
-          "relative": "about 6 hours ago",
+          "relative": "about 7 hours ago",
           "image": null
         },
         {
           "title": "PFL Dubai card finalized with 15 fights, heavyweight title bout",
           "link": "https://www.mmafighting.com/pfl/518067/pfl-dubai-card-finalized-with-15-fights-heavyweight-title-bout",
           "date": "2026-10-28T00:00:00.000Z",
-          "relative": "about 10 hours ago",
+          "relative": "about 11 hours ago",
           "image": null
         },
         {
           "title": "Arman Tsarukyan wrestles Anthony Pettis in RAF 15 main event",
           "link": "https://www.mmafighting.com/raf-wrestling/518094/arman-tsarukyan-wrestles-anthony-pettis-in-main-event-of-raf-15",
           "date": "2026-10-27T22:00:00.000Z",
-          "relative": "about 12 hours ago",
+          "relative": "about 13 hours ago",
           "image": null
         },
         {
           "title": "TUF 34 winner Tina Black hopes for top-ranked opponent in debut: ‘I want to make history in the UFC’",
           "link": "https://www.mmafighting.com/ufc/514441/tuf-34-winner-tina-black-hopes-for-top-ranked-opponent-in-debut-i-want-to-make-history-in-the-ufc",
           "date": "2026-10-27T20:00:00.000Z",
-          "relative": "about 14 hours ago",
+          "relative": "about 15 hours ago",
           "image": null
         },
         {
           "title": "Aljamain Sterling explains why he’s not ready to call Petr Yan the bantamweight GOAT just yet",
           "link": "https://www.mmafighting.com/ufc/518008/aljamain-sterling-explains-why-hes-not-ready-to-call-petr-yan-the-bantamweight-goat-just-yet",
           "date": "2026-10-27T18:00:00.000Z",
-          "relative": "about 16 hours ago",
+          "relative": "about 17 hours ago",
           "image": null
         }
       ]
@@ -56,20 +56,20 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-28T09:35:09.768Z",
+      "updated": "2026-10-28T10:32:42.807Z",
       "items": [
         {
           "title": "Carlos Prates' coach says Michael Morales won't make it to Round 3",
           "link": "https://www.sherdog.com/news/news/Carlos-Prates-coach-says-Michael-Morales-wont-make-it-to-Round-3-203384",
           "date": "2026-10-28T05:34:43.000Z",
-          "relative": "about 4 hours ago",
+          "relative": "about 5 hours ago",
           "image": null
         },
         {
           "title": "Renato Moicano calls Ortega vs. Hooker 'worst fight in the UFC'",
           "link": "https://www.sherdog.com/news/news/Renato-Moicano-calls-Ortega-vs-Hooker-worst-fight-in-the-UFC-203390",
           "date": "2026-10-28T03:29:19.000Z",
-          "relative": "about 6 hours ago",
+          "relative": "about 7 hours ago",
           "image": null
         },
         {
@@ -83,14 +83,14 @@
           "title": "Report: Zuffa Boxing's Edgar Berlanga arrested in Florida on felony battery charge",
           "link": "https://www.sherdog.com/news/news/Report-Zuffa-Boxings-Edgar-Berlanga-arrested-in-Florida-on-felony-battery-charge-203388",
           "date": "2026-10-28T02:45:11.000Z",
-          "relative": "about 7 hours ago",
+          "relative": "about 8 hours ago",
           "image": null
         },
         {
           "title": "Vadim Nemkov says UFC fighters get 'mere pennies' despite huge revenue",
           "link": "https://www.sherdog.com/news/news/Vadim-Nemkov-says-UFC-fighters-get-mere-pennies-despite-huge-revenue-203387",
           "date": "2026-10-28T02:32:15.000Z",
-          "relative": "about 7 hours ago",
+          "relative": "about 8 hours ago",
           "image": null
         }
       ]
