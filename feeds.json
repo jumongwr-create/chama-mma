@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-28T21:07:50.616Z",
+  "generatedAt": "2026-10-28T23:01:42.900Z",
   "sources": [
     {
       "id": "ufc",
       "name": "UFC",
       "site": "https://www.ufc.com/",
-      "updated": "2026-10-28T21:07:50.483Z",
+      "updated": "2026-10-28T23:01:42.795Z",
       "items": [],
       "error": "Status code 403"
     },
@@ -13,41 +13,41 @@
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-28T21:07:50.616Z",
+      "updated": "2026-10-28T23:01:42.871Z",
       "items": [
         {
           "title": "Amanda Serrano set for retirement fight in January",
           "link": "https://www.mmafighting.com/boxing/518199/amanda-serrano-set-for-retirement-fight-in-january",
           "date": "2026-10-28T21:00:00.000Z",
-          "relative": "8 minutes ago",
+          "relative": "about 2 hours ago",
           "image": null
         },
         {
           "title": "Anything but fighting: Alexander Hernandez answers random questions",
           "link": "https://www.mmafighting.com/ufc/515489/anything-but-fighting-alexander-hernandez-answers-random-questions",
           "date": "2026-10-28T19:00:00.000Z",
-          "relative": "about 2 hours ago",
+          "relative": "about 4 hours ago",
           "image": null
         },
         {
           "title": "Jose Aldo reveals real reason why he ‘cried a lot’ after Conor McGregor loss",
           "link": "https://www.mmafighting.com/ufc/518188/jose-aldo-reveals-real-reason-why-he-cried-a-lot-after-conor-mcgregor-loss",
           "date": "2026-10-28T17:00:00.000Z",
-          "relative": "about 4 hours ago",
+          "relative": "about 6 hours ago",
           "image": null
         },
         {
           "title": "Sean O’Malley: There’s no ‘debate or an argument,’ rematch against Petr Yan is next",
           "link": "https://www.mmafighting.com/ufc/518097/sean-omalley-theres-no-debate-or-an-argument-rematch-against-petr-yan-is-happening-next",
           "date": "2026-10-28T15:00:00.000Z",
-          "relative": "about 6 hours ago",
+          "relative": "about 8 hours ago",
           "image": null
         },
         {
           "title": "‘I would like to be a free agent’: Renato Moicano plans to fight out remainder of deal ahead of UFC Vegas 123 headliner",
           "link": "https://www.mmafighting.com/ufc/518106/i-would-like-to-be-a-free-agent-renato-moicano-plans-to-fight-out-remainder-of-deal-ahead-of-ufc-vegas-123-headliner",
           "date": "2026-10-28T13:00:00.000Z",
-          "relative": "about 8 hours ago",
+          "relative": "about 10 hours ago",
           "image": null
         }
       ]
@@ -56,41 +56,41 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-28T21:07:50.571Z",
+      "updated": "2026-10-28T23:01:42.900Z",
       "items": [
+        {
+          "title": "Arman Tsarukyan vs. Anthony Pettis to headline RAF 15 title match",
+          "link": "https://www.sherdog.com/news/news/Arman-Tsarukyan-vs-Anthony-Pettis-to-headline-RAF-15-title-match-203398",
+          "date": "2026-10-28T21:21:48.000Z",
+          "relative": "about 2 hours ago",
+          "image": null
+        },
+        {
+          "title": "Alexander Volkanovski feared lungs wouldn't last 5 rounds at UFC 333",
+          "link": "https://www.sherdog.com/news/news/Alexander-Volkanovski-feared-lungs-wouldnt-last-5-rounds-at-UFC-333-203397",
+          "date": "2026-10-28T21:07:55.000Z",
+          "relative": "about 2 hours ago",
+          "image": null
+        },
         {
           "title": "Tom Nolan makes permanent City Kickboxing move before Moicano fight",
           "link": "https://www.sherdog.com/news/news/Tom-Nolan-makes-permanent-City-Kickboxing-move-before-Moicano-fight-203396",
           "date": "2026-10-28T19:31:15.000Z",
-          "relative": "about 2 hours ago",
+          "relative": "about 4 hours ago",
           "image": null
         },
         {
           "title": "Israel Adesanya signs UFC bout agreement, says his four-fight skid will end",
           "link": "https://www.sherdog.com/news/news/Israel-Adesanya-signs-UFC-bout-agreement-says-his-fourfight-skid-will-end-203395",
           "date": "2026-10-28T19:22:52.000Z",
-          "relative": "about 2 hours ago",
+          "relative": "about 4 hours ago",
           "image": null
         },
         {
           "title": "Cris Cyborg says Claressa Shields quit MMA because it was 'too hard'",
           "link": "https://www.sherdog.com/news/news/Cris-Cyborg-says-Claressa-Shields-quit-MMA-because-it-was-too-hard-203394",
           "date": "2026-10-28T19:08:06.000Z",
-          "relative": "about 2 hours ago",
-          "image": null
-        },
-        {
-          "title": "Georges St. Pierre training undefeated PFL prospect ahead of Dubai fight",
-          "link": "https://www.sherdog.com/news/news/Georges-St-Pierre-training-undefeated-PFL-prospect-ahead-of-Dubai-fight-203393",
-          "date": "2026-10-28T18:55:10.000Z",
-          "relative": "about 2 hours ago",
-          "image": null
-        },
-        {
-          "title": "Renato Moicano plans to test free agency after UFC contract expires",
-          "link": "https://www.sherdog.com/news/news/Renato-Moicano-plans-to-test-free-agency-after-UFC-contract-expires-203392",
-          "date": "2026-10-28T18:37:24.000Z",
-          "relative": "about 3 hours ago",
+          "relative": "about 4 hours ago",
           "image": null
         }
       ]
