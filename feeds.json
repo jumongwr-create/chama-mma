@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-28T16:17:00.041Z",
+  "generatedAt": "2026-10-28T17:16:35.078Z",
   "sources": [
     {
       "id": "ufc",
       "name": "UFC",
       "site": "https://www.ufc.com/",
-      "updated": "2026-10-28T16:16:59.904Z",
+      "updated": "2026-10-28T17:16:34.982Z",
       "items": [],
       "error": "Status code 403"
     },
@@ -13,41 +13,41 @@
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-28T16:17:00.041Z",
+      "updated": "2026-10-28T17:16:35.078Z",
       "items": [
+        {
+          "title": "Jose Aldo reveals real reason why he ‘cried a lot’ after Conor McGregor loss",
+          "link": "https://www.mmafighting.com/ufc/518188/jose-aldo-reveals-real-reason-why-he-cried-a-lot-after-conor-mcgregor-loss",
+          "date": "2026-10-28T17:00:00.000Z",
+          "relative": "17 minutes ago",
+          "image": null
+        },
         {
           "title": "Sean O’Malley: There’s no ‘debate or an argument,’ rematch against Petr Yan is next",
           "link": "https://www.mmafighting.com/ufc/518097/sean-omalley-theres-no-debate-or-an-argument-rematch-against-petr-yan-is-happening-next",
           "date": "2026-10-28T15:00:00.000Z",
-          "relative": "about 1 hour ago",
+          "relative": "about 2 hours ago",
           "image": null
         },
         {
           "title": "‘I would like to be a free agent’: Renato Moicano plans to fight out remainder of deal ahead of UFC Vegas 123 headliner",
           "link": "https://www.mmafighting.com/ufc/518106/i-would-like-to-be-a-free-agent-renato-moicano-plans-to-fight-out-remainder-of-deal-ahead-of-ufc-vegas-123-headliner",
           "date": "2026-10-28T13:00:00.000Z",
-          "relative": "about 3 hours ago",
+          "relative": "about 4 hours ago",
           "image": null
         },
         {
           "title": "Morning Report &#124; Chael Sonnen: Alexander Volkanovski double retirement fight pitch is ‘one of the dumbest ideas I’ve ever heard’",
           "link": "https://www.mmafighting.com/ufc/517092/morning-report-chael-sonnen-alexander-volkanovski-double-retirement-fight-pitch-is-one-of-the-dumbest-ideas-ive-ever-heard",
           "date": "2026-10-28T12:00:00.000Z",
-          "relative": "about 4 hours ago",
+          "relative": "about 5 hours ago",
           "image": null
         },
         {
           "title": "Quillan Salkilld faces Benoit Saint Denis in main event of UFC Sydney",
           "link": "https://www.mmafighting.com/ufc/518150/quillan-salkilld-faces-benoit-saint-denis-in-main-event-of-ufc-sydney",
           "date": "2026-10-28T03:49:34.000Z",
-          "relative": "about 12 hours ago",
-          "image": null
-        },
-        {
-          "title": "PFL Dubai card finalized with 15 fights, heavyweight title bout",
-          "link": "https://www.mmafighting.com/pfl/518067/pfl-dubai-card-finalized-with-15-fights-heavyweight-title-bout",
-          "date": "2026-10-28T00:00:00.000Z",
-          "relative": "about 16 hours ago",
+          "relative": "about 13 hours ago",
           "image": null
         }
       ]
@@ -56,41 +56,41 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-28T16:17:00.028Z",
+      "updated": "2026-10-28T17:16:35.069Z",
       "items": [
         {
           "title": "Jesse Sparks faces Richard Carmack following 2 KOs in just 53 seconds",
           "link": "https://www.sherdog.com/news/news/Jesse-Sparks-faces-Richard-Carmack-following-2-KOs-in-just-53-seconds-203382",
           "date": "2026-10-28T11:00:05.000Z",
-          "relative": "about 5 hours ago",
+          "relative": "about 6 hours ago",
           "image": null
         },
         {
           "title": "Carlos Prates' coach says Michael Morales won't make it to Round 3",
           "link": "https://www.sherdog.com/news/news/Carlos-Prates-coach-says-Michael-Morales-wont-make-it-to-Round-3-203384",
           "date": "2026-10-28T05:34:43.000Z",
-          "relative": "about 11 hours ago",
+          "relative": "about 12 hours ago",
           "image": null
         },
         {
           "title": "Renato Moicano calls Ortega vs. Hooker 'worst fight in the UFC'",
           "link": "https://www.sherdog.com/news/news/Renato-Moicano-calls-Ortega-vs-Hooker-worst-fight-in-the-UFC-203390",
           "date": "2026-10-28T03:29:19.000Z",
-          "relative": "about 13 hours ago",
+          "relative": "about 14 hours ago",
           "image": null
         },
         {
           "title": "Carlos Prates to Islam Makhachev's manager: 'I will finish his legacy'",
           "link": "https://www.sherdog.com/news/news/Carlos-Prates-to-Islam-Makhachevs-manager-I-will-finish-his-legacy-203389",
           "date": "2026-10-28T03:05:27.000Z",
-          "relative": "about 13 hours ago",
+          "relative": "about 14 hours ago",
           "image": null
         },
         {
           "title": "Report: Zuffa Boxing's Edgar Berlanga arrested in Florida on felony battery charge",
           "link": "https://www.sherdog.com/news/news/Report-Zuffa-Boxings-Edgar-Berlanga-arrested-in-Florida-on-felony-battery-charge-203388",
           "date": "2026-10-28T02:45:11.000Z",
-          "relative": "about 14 hours ago",
+          "relative": "about 15 hours ago",
           "image": null
         }
       ]
