@@ -3,7 +3,7 @@ const fs = require('fs');
 const { formatDistanceToNow } = require('date-fns');
 
 const parser = new Parser({
-  timeout: 15000,
+  timeout: 10000,
   customFields: {
     item: [
       ['media:content', 'mediaContent', { keepArray: true }],
@@ -21,7 +21,6 @@ const parser = new Parser({
   }
 });
 
-// UFC removed (blocked). Bloody Elbow first.
 const FEEDS = [
   {
     id: 'bloodyelbow',
@@ -47,12 +46,9 @@ const FEEDS = [
 ];
 
 function extractImage(item) {
-  // 1. Standard enclosure
   if (item.enclosure?.url && /\.(jpg|jpeg|png|webp|gif)/i.test(item.enclosure.url)) {
     return item.enclosure.url;
   }
-
-  // 2. media:content / media:thumbnail (from customFields)
   if (item.mediaContent) {
     const arr = Array.isArray(item.mediaContent) ? item.mediaContent : [item.mediaContent];
     for (const m of arr) {
@@ -67,68 +63,59 @@ function extractImage(item) {
       if (url) return url;
     }
   }
-
-  // 3. Pull first <img src="..."> from HTML content
   const htmlSources = [
-    item.contentEncoded,
-    item['content:encoded'],
-    item.content,
-    item.description,
-    item.summary,
-    item.contentSnippet
+    item.contentEncoded, item['content:encoded'], item.content,
+    item.description, item.summary, item.contentSnippet
   ].filter(Boolean);
-
   for (const html of htmlSources) {
-    // Match src="..." or src='...'
     const match = String(html).match(/<img[^>]+src=["']([^"']+)["']/i);
     if (match && match[1]) {
-      let src = match[1]
-        .replace(/&amp;/g, '&')
-        .replace(/&#038;/g, '&')
-        .trim();
-      // Skip tiny icons / tracking pixels
-      if (src && !/pixel|1x1|spacer|blank|logo-small/i.test(src)) {
-        return src;
-      }
+      let src = match[1].replace(/&amp;/g, '&').replace(/&#038;/g, '&').trim();
+      if (src && !/pixel|1x1|spacer|blank|logo-small/i.test(src)) return src;
     }
   }
-
   return null;
+}
+
+// Hard timeout wrapper so one slow feed can never hang the job
+function withTimeout(promise, ms, label) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error(`Timeout after ${ms}ms`)), ms)
+    )
+  ]);
 }
 
 async function fetchFeed(feedConfig) {
   try {
     console.log(`Fetching ${feedConfig.name}...`);
-    const feed = await parser.parseURL(feedConfig.url);
+    const feed = await withTimeout(
+      parser.parseURL(feedConfig.url),
+      12000,
+      feedConfig.name
+    );
 
     const items = (feed.items || [])
       .slice(0, feedConfig.limit)
       .map(item => {
         let published = item.isoDate || item.pubDate;
         let relative = '';
-
         if (published) {
           try {
             relative = formatDistanceToNow(new Date(published), { addSuffix: true });
-          } catch (e) {
-            relative = '';
-          }
+          } catch (e) {}
         }
-
-        const image = extractImage(item);
-
         return {
           title: (item.title || 'Untitled').trim(),
           link: item.link || item.guid || '#',
           date: published || null,
           relative,
-          image
+          image: extractImage(item)
         };
       });
 
-    const withImages = items.filter(i => i.image).length;
-    console.log(`  → ${items.length} items (${withImages} with images)`);
-
+    console.log(`  → ${items.length} items`);
     return {
       id: feedConfig.id,
       name: feedConfig.name,
@@ -151,7 +138,6 @@ async function fetchFeed(feedConfig) {
 
 async function main() {
   console.log('Fetching feeds...\n');
-
   const results = await Promise.all(FEEDS.map(fetchFeed));
 
   const output = {
@@ -161,7 +147,6 @@ async function main() {
 
   fs.writeFileSync('feeds.json', JSON.stringify(output, null, 2));
   console.log('\nfeeds.json written successfully\n');
-
   results.forEach(r => {
     const status = r.error ? `ERROR: ${r.error}` : `${r.items.length} items`;
     console.log(`${r.name.padEnd(16)} ${status}`);
