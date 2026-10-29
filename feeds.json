@@ -1,19 +1,61 @@
 {
-  "generatedAt": "2026-10-29T04:02:59.519Z",
+  "generatedAt": "2026-10-29T04:23:07.667Z",
   "sources": [
     {
-      "id": "ufc",
-      "name": "UFC",
-      "site": "https://www.ufc.com/",
-      "updated": "2026-10-29T04:02:59.241Z",
-      "items": [],
-      "error": "Status code 403"
+      "id": "bloodyelbow",
+      "name": "Bloody Elbow",
+      "site": "https://bloodyelbow.com/",
+      "updated": "2026-10-29T04:23:07.667Z",
+      "items": [
+        {
+          "title": "Alexander Volkanovski’s told he should replicate Max Holloway after posing ‘dumbest idea ever’",
+          "link": "https://bloodyelbow.com/2026/10/28/alexander-volkanovskis-told-he-should-replicate-max-holloway-after-posing-dumbest-idea-ever/",
+          "date": "2026-10-29T03:59:00.000Z",
+          "relative": "24 minutes ago",
+          "image": null
+        },
+        {
+          "title": "Fans call for a Daniel Cormier UFC comeback after new wrestling footage: ‘Could be HW champ again’",
+          "link": "https://bloodyelbow.com/2026/10/28/fans-call-for-a-daniel-cormier-ufc-comeback-after-new-wrestling-footage-could-be-hw-champ-again/",
+          "date": "2026-10-29T03:00:00.000Z",
+          "relative": "about 1 hour ago",
+          "image": null
+        },
+        {
+          "title": "Alexander Volkanovski reveals how close he is to retirement after UFC 333",
+          "link": "https://bloodyelbow.com/2026/10/28/alexander-volkanovski-reveals-how-close-he-is-to-retirement-after-ufc-333/",
+          "date": "2026-10-29T02:00:00.000Z",
+          "relative": "about 2 hours ago",
+          "image": null
+        },
+        {
+          "title": "Canelo Alvarez signs huge $10 million multi-year partnership deal ahead of boxing return",
+          "link": "https://bloodyelbow.com/2026/10/28/canelo-alvarez-signs-huge-10-million-multi-year-partnership-deal-ahead-of-boxing-return/",
+          "date": "2026-10-29T01:00:00.000Z",
+          "relative": "about 3 hours ago",
+          "image": null
+        },
+        {
+          "title": "Dominick Cruz defends Ciryl Gane by arguing it’s the fighter’s fault if they get poked in the eye",
+          "link": "https://bloodyelbow.com/2026/10/28/dominick-cruz-defends-ciryl-gane-by-arguing-its-the-fighters-fault-if-they-get-poked-in-the-eye/",
+          "date": "2026-10-29T00:00:00.000Z",
+          "relative": "about 4 hours ago",
+          "image": null
+        },
+        {
+          "title": "Alexander Volkov does not believe Dana White knew who he was at the UFC 333 press conference",
+          "link": "https://bloodyelbow.com/2026/10/28/alexander-volkov-does-not-believe-dana-white-knew-who-he-was-at-the-ufc-333-press-conference/",
+          "date": "2026-10-28T23:00:00.000Z",
+          "relative": "about 5 hours ago",
+          "image": null
+        }
+      ]
     },
     {
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-29T04:02:59.360Z",
+      "updated": "2026-10-29T04:23:07.655Z",
       "items": [
         {
           "title": "Joselyne Edwards to serve as backup fighter for Kayla Harrison vs. Amanda Nunes at UFC 334",
@@ -63,27 +105,34 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-29T04:02:59.311Z",
+      "updated": "2026-10-29T04:23:07.526Z",
       "items": [
         {
           "title": "Dakota Ditcheva cleared, wants PFL title shot against Jena Bishop after surgery",
           "link": "https://www.sherdog.com/news/news/Dakota-Ditcheva-cleared-wants-PFL-title-shot-against-Jena-Bishop-after-surgery-203399",
           "date": "2026-10-29T04:22:35.000Z",
-          "relative": "in 20 minutes",
+          "relative": "1 minute ago",
+          "image": null
+        },
+        {
+          "title": "Alexander Volkov: Dana White still has no answer on UFC title shot",
+          "link": "https://www.sherdog.com/news/news/Alexander-Volkov-Dana-White-still-has-no-answer-on-UFC-title-shot-203407",
+          "date": "2026-10-29T04:10:56.000Z",
+          "relative": "12 minutes ago",
           "image": null
         },
         {
           "title": "Jacobe Smith predicts altercation with Kevin Holland outside UFC cage",
           "link": "https://www.sherdog.com/news/news/Jacobe-Smith-predicts-altercation-with-Kevin-Holland-outside-UFC-cage-203406",
           "date": "2026-10-29T03:46:14.000Z",
-          "relative": "17 minutes ago",
+          "relative": "37 minutes ago",
           "image": null
         },
         {
           "title": "Joselyne Edwards reportedly named backup for Harrison-Nunes at UFC 334",
           "link": "https://www.sherdog.com/news/news/Joselyne-Edwards-reportedly-named-backup-for-HarrisonNunes-at-UFC-334-203405",
           "date": "2026-10-29T03:26:45.000Z",
-          "relative": "36 minutes ago",
+          "relative": "about 1 hour ago",
           "image": null
         },
         {
@@ -91,56 +140,6 @@
           "link": "https://www.sherdog.com/news/news/Alexander-Volkanovski-open-to-fighting-Arman-Tsarukyan-for-UFC-gold-203404",
           "date": "2026-10-29T02:17:08.000Z",
           "relative": "about 2 hours ago",
-          "image": null
-        },
-        {
-          "title": "Alex Pereira names Carlos Prates his favorite Brazilian to watch",
-          "link": "https://www.sherdog.com/news/news/Alex-Pereira-names-Carlos-Prates-his-favorite-Brazilian-to-watch-203402",
-          "date": "2026-10-29T02:15:45.000Z",
-          "relative": "about 2 hours ago",
-          "image": null
-        }
-      ]
-    },
-    {
-      "id": "bloodyelbow",
-      "name": "Bloody Elbow",
-      "site": "https://bloodyelbow.com/",
-      "updated": "2026-10-29T04:02:59.519Z",
-      "items": [
-        {
-          "title": "Alexander Volkanovski’s told he should replicate Max Holloway after posing ‘dumbest idea ever’",
-          "link": "https://bloodyelbow.com/2026/10/28/alexander-volkanovskis-told-he-should-replicate-max-holloway-after-posing-dumbest-idea-ever/",
-          "date": "2026-10-29T03:59:00.000Z",
-          "relative": "4 minutes ago",
-          "image": null
-        },
-        {
-          "title": "Fans call for a Daniel Cormier UFC comeback after new wrestling footage: ‘Could be HW champ again’",
-          "link": "https://bloodyelbow.com/2026/10/28/fans-call-for-a-daniel-cormier-ufc-comeback-after-new-wrestling-footage-could-be-hw-champ-again/",
-          "date": "2026-10-29T03:00:00.000Z",
-          "relative": "about 1 hour ago",
-          "image": null
-        },
-        {
-          "title": "Alexander Volkanovski reveals how close he is to retirement after UFC 333",
-          "link": "https://bloodyelbow.com/2026/10/28/alexander-volkanovski-reveals-how-close-he-is-to-retirement-after-ufc-333/",
-          "date": "2026-10-29T02:00:00.000Z",
-          "relative": "about 2 hours ago",
-          "image": null
-        },
-        {
-          "title": "Canelo Alvarez signs huge $10 million multi-year partnership deal ahead of boxing return",
-          "link": "https://bloodyelbow.com/2026/10/28/canelo-alvarez-signs-huge-10-million-multi-year-partnership-deal-ahead-of-boxing-return/",
-          "date": "2026-10-29T01:00:00.000Z",
-          "relative": "about 3 hours ago",
-          "image": null
-        },
-        {
-          "title": "Dominick Cruz defends Ciryl Gane by arguing it’s the fighter’s fault if they get poked in the eye",
-          "link": "https://bloodyelbow.com/2026/10/28/dominick-cruz-defends-ciryl-gane-by-arguing-its-the-fighters-fault-if-they-get-poked-in-the-eye/",
-          "date": "2026-10-29T00:00:00.000Z",
-          "relative": "about 4 hours ago",
           "image": null
         }
       ]
