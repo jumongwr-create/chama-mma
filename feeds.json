@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-29T01:46:12.411Z",
+  "generatedAt": "2026-10-29T02:37:01.578Z",
   "sources": [
     {
       "id": "ufc",
       "name": "UFC",
       "site": "https://www.ufc.com/",
-      "updated": "2026-10-29T01:46:12.275Z",
+      "updated": "2026-10-29T02:37:01.452Z",
       "items": [],
       "error": "Status code 403"
     },
@@ -13,41 +13,41 @@
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-29T01:46:12.411Z",
+      "updated": "2026-10-29T02:37:01.578Z",
       "items": [
+        {
+          "title": "Joselyne Edwards to serve as backup fighter for Kayla Harrison vs. Amanda Nunes at UFC 334",
+          "link": "https://www.mmafighting.com/ufc/518223/joselyne-edwards-to-serve-as-backup-fighter-for-kayla-harrison-vs-amanda-nunes-at-ufc-334",
+          "date": "2026-10-29T01:03:38.000Z",
+          "relative": "about 2 hours ago",
+          "image": null
+        },
+        {
+          "title": "Canelo Alvarez vs. Christian Mbilli fight card, start time",
+          "link": "https://www.mmafighting.com/boxing/518207/canelo-alvarez-vs-christian-mbilli-fight-card-start-time",
+          "date": "2026-10-28T23:00:00.000Z",
+          "relative": "about 4 hours ago",
+          "image": null
+        },
         {
           "title": "Amanda Serrano set for retirement fight in January",
           "link": "https://www.mmafighting.com/boxing/518199/amanda-serrano-set-for-retirement-fight-in-january",
           "date": "2026-10-28T21:00:00.000Z",
-          "relative": "about 5 hours ago",
+          "relative": "about 6 hours ago",
           "image": null
         },
         {
           "title": "Anything but fighting: Alexander Hernandez answers random questions",
           "link": "https://www.mmafighting.com/ufc/515489/anything-but-fighting-alexander-hernandez-answers-random-questions",
           "date": "2026-10-28T19:00:00.000Z",
-          "relative": "about 7 hours ago",
+          "relative": "about 8 hours ago",
           "image": null
         },
         {
           "title": "Jose Aldo reveals real reason why he ‘cried a lot’ after Conor McGregor loss",
           "link": "https://www.mmafighting.com/ufc/518188/jose-aldo-reveals-real-reason-why-he-cried-a-lot-after-conor-mcgregor-loss",
           "date": "2026-10-28T17:00:00.000Z",
-          "relative": "about 9 hours ago",
-          "image": null
-        },
-        {
-          "title": "Sean O’Malley: There’s no ‘debate or an argument,’ rematch against Petr Yan is next",
-          "link": "https://www.mmafighting.com/ufc/518097/sean-omalley-theres-no-debate-or-an-argument-rematch-against-petr-yan-is-happening-next",
-          "date": "2026-10-28T15:00:00.000Z",
-          "relative": "about 11 hours ago",
-          "image": null
-        },
-        {
-          "title": "‘I would like to be a free agent’: Renato Moicano plans to fight out remainder of deal ahead of UFC Vegas 123 headliner",
-          "link": "https://www.mmafighting.com/ufc/518106/i-would-like-to-be-a-free-agent-renato-moicano-plans-to-fight-out-remainder-of-deal-ahead-of-ufc-vegas-123-headliner",
-          "date": "2026-10-28T13:00:00.000Z",
-          "relative": "about 13 hours ago",
+          "relative": "about 10 hours ago",
           "image": null
         }
       ]
@@ -56,20 +56,34 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-29T01:46:12.341Z",
+      "updated": "2026-10-29T02:37:01.537Z",
       "items": [
         {
           "title": "Dakota Ditcheva cleared, wants PFL title shot against Jena Bishop after surgery",
           "link": "https://www.sherdog.com/news/news/Dakota-Ditcheva-cleared-wants-PFL-title-shot-against-Jena-Bishop-after-surgery-203399",
           "date": "2026-10-29T04:22:35.000Z",
-          "relative": "in about 3 hours",
+          "relative": "in about 2 hours",
+          "image": null
+        },
+        {
+          "title": "Alex Pereira names Carlos Prates his favorite Brazilian to watch",
+          "link": "https://www.sherdog.com/news/news/Alex-Pereira-names-Carlos-Prates-his-favorite-Brazilian-to-watch-203402",
+          "date": "2026-10-29T02:15:45.000Z",
+          "relative": "21 minutes ago",
+          "image": null
+        },
+        {
+          "title": "UFC 334 odds: Amanda Nunes returns as underdog at MSG",
+          "link": "https://www.sherdog.com/news/news/UFC-334-odds-Amanda-Nunes-returns-as-underdog-at-MSG-203400",
+          "date": "2026-10-29T01:54:44.000Z",
+          "relative": "42 minutes ago",
           "image": null
         },
         {
           "title": "Arman Tsarukyan vs. Anthony Pettis to headline RAF 15 title match",
           "link": "https://www.sherdog.com/news/news/Arman-Tsarukyan-vs-Anthony-Pettis-to-headline-RAF-15-title-match-203398",
           "date": "2026-10-28T21:21:48.000Z",
-          "relative": "about 4 hours ago",
+          "relative": "about 5 hours ago",
           "image": null
         },
         {
@@ -77,20 +91,6 @@
           "link": "https://www.sherdog.com/news/news/Alexander-Volkanovski-feared-lungs-wouldnt-last-5-rounds-at-UFC-333-203397",
           "date": "2026-10-28T21:07:55.000Z",
           "relative": "about 5 hours ago",
-          "image": null
-        },
-        {
-          "title": "Tom Nolan makes permanent City Kickboxing move before Moicano fight",
-          "link": "https://www.sherdog.com/news/news/Tom-Nolan-makes-permanent-City-Kickboxing-move-before-Moicano-fight-203396",
-          "date": "2026-10-28T19:31:15.000Z",
-          "relative": "about 6 hours ago",
-          "image": null
-        },
-        {
-          "title": "Israel Adesanya signs UFC bout agreement, says his four-fight skid will end",
-          "link": "https://www.sherdog.com/news/news/Israel-Adesanya-signs-UFC-bout-agreement-says-his-fourfight-skid-will-end-203395",
-          "date": "2026-10-28T19:22:52.000Z",
-          "relative": "about 6 hours ago",
           "image": null
         }
       ]
