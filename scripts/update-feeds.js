@@ -13,8 +13,15 @@ const parser = new Parser({
   }
 });
 
-// Only reliable sources that work from GitHub Actions
+// UFC removed (blocked with 403). Bloody Elbow takes its place as first column.
 const FEEDS = [
+  {
+    id: 'bloodyelbow',
+    name: 'Bloody Elbow',
+    url: 'https://bloodyelbow.com/feed/',
+    site: 'https://bloodyelbow.com/',
+    limit: 6
+  },
   {
     id: 'mmafighting',
     name: 'MMA Fighting',
@@ -27,13 +34,6 @@ const FEEDS = [
     name: 'Sherdog',
     url: 'https://www.sherdog.com/rss/news.xml',
     site: 'https://www.sherdog.com/',
-    limit: 5
-  },
-  {
-    id: 'bloodyelbow',
-    name: 'Bloody Elbow',
-    url: 'https://bloodyelbow.com/feed/',
-    site: 'https://bloodyelbow.com/',
     limit: 5
   }
 ];
