@@ -11,6 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,10 +28,13 @@ jobs:
 
       - name: Fetch news feeds
         run: node scripts/update-feeds.js
+        continue-on-error: true
+        timeout-minutes: 2
 
       - name: Fetch UFC rankings
         run: node scripts/update-rankings.js
         continue-on-error: true
+        timeout-minutes: 2
 
       - name: Commit and push if changed
         run: |
