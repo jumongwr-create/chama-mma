@@ -13,14 +13,8 @@ const parser = new Parser({
   }
 });
 
+// Only reliable sources that work from GitHub Actions
 const FEEDS = [
-  {
-    id: 'ufc',
-    name: 'UFC',
-    url: 'https://www.ufc.com/rss/news',
-    site: 'https://www.ufc.com/',
-    limit: 6
-  },
   {
     id: 'mmafighting',
     name: 'MMA Fighting',
