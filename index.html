@@ -514,13 +514,17 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
-      min-height: 600px;
+      min-height: 650px;
+      width: 100%;
+    }
+    .x-embed-wrapper iframe {
+      width: 100% !important;
     }
     .x-embed-wrapper a.twitter-timeline {
       display: block;
       color: var(--muted);
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 1rem;
       font-size: 0.9rem;
     }
 
@@ -661,25 +665,20 @@
     </div>
 
 
+  
     <!-- X · Fighter Tweets (Official List Embed) -->
     <div class="tweets-section">
       <h2>X · Fighter Tweets</h2>
       <p class="sub">GOATs · Legends · Ranked fighters · Dana White · Joe Rogan & key MMA voices — updates live</p>
 
       <div class="x-embed-wrapper">
-        <!-- 
-          INSTRUCTIONS:
-          1. Go to https://x.com and create a public List
-          2. Add the accounts you want (examples below)
-          3. Open the List → click the share icon → "Embed List"
-          4. Copy the list ID from the embed code (numbers after /lists/)
-          5. Replace 2115676466876997970 below with that number
-        -->
         <a class="twitter-timeline"
+           data-width="100%"
            data-height="700"
            data-theme="light"
-           href="https://twitter.com/i/lists/2115676466876997970">
-          Loading tweets…
+           data-chrome="noheader nofooter noborders transparent"
+           href="https://x.com/i/lists/2115676466876997970?ref_src=twsrc%5Etfw">
+          Tweets from CHAMA MMA List
         </a>
       </div>
     </div>
