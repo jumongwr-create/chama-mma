@@ -236,12 +236,48 @@
 
     /* === UFC Countdown Topbar === */
     .ufc-countdown-bar {
-      background: var(--header-bg);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, #1a1a1a 0%, #2d1f1f 50%, #1a1a1a 100%);
+      border-bottom: 1px solid #3a2a2a;
       position: sticky;
       top: 57px;
       z-index: 90;
       -webkit-overflow-scrolling: touch;
+    }
+
+    [data-theme="dark"] .ufc-countdown-bar {
+      background: linear-gradient(90deg, #0d0d0d 0%, #1f1515 50%, #0d0d0d 100%);
+      border-bottom: 1px solid #2a1f1f;
+    }
+
+    .ufc-countdown-bar .countdown-item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f0f0f0;
+    }
+
+    .ufc-countdown-bar .countdown-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .ufc-countdown-bar .event-name {
+      color: #b0a0a0;
+    }
+
+    .ufc-countdown-bar .event-main {
+      color: #f5f5f5;
+    }
+
+    .ufc-countdown-bar .timer {
+      color: #ffffff;
+    }
+
+    .ufc-countdown-bar .timer.live {
+      color: #ff4d6d;
+    }
+
+    .ufc-countdown-bar .location {
+      color: #998888;
     }
     .ufc-countdown-bar::-webkit-scrollbar { height: 4px; }
     .ufc-countdown-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
