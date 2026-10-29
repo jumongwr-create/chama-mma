@@ -415,6 +415,115 @@
       line-height: 1.35;
     }
 
+
+    /* === Fighter Tweets Section === */
+    .tweets-section {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 2rem 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .tweets-section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+    .tweets-section .sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .tweets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .tweet-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .tweet-card:hover {
+      border-color: #ccc;
+      background: var(--card-hover);
+    }
+    [data-theme="dark"] .tweet-card:hover {
+      border-color: #444;
+    }
+    .tweet-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .tweet-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .tweet-user {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .tweet-handle {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .tweet-text {
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+    .tweet-meta {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: auto;
+    }
+
+    /* === X List Embed Section === */
+    .tweets-section {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 2rem 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .tweets-section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+    .tweets-section .sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .x-embed-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    .x-embed-wrapper a.twitter-timeline {
+      display: block;
+      color: var(--muted);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
   </style>
 </head>
 <body>
@@ -550,6 +659,32 @@
 
       </div>
     </div>
+
+
+    <!-- X · Fighter Tweets (Official List Embed) -->
+    <div class="tweets-section">
+      <h2>X · Fighter Tweets</h2>
+      <p class="sub">GOATs · Legends · Ranked fighters · Dana White · Joe Rogan & key MMA voices — updates live</p>
+
+      <div class="x-embed-wrapper">
+        <!-- 
+          INSTRUCTIONS:
+          1. Go to https://x.com and create a public List
+          2. Add the accounts you want (examples below)
+          3. Open the List → click the share icon → "Embed List"
+          4. Copy the list ID from the embed code (numbers after /lists/)
+          5. Replace 2115676466876997970 below with that number
+        -->
+        <a class="twitter-timeline"
+           data-height="700"
+           data-theme="light"
+           href="https://twitter.com/i/lists/2115676466876997970">
+          Loading tweets…
+        </a>
+      </div>
+    </div>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   </main>
 
