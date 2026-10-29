@@ -1,4 +1,4 @@
-name: Update MMA Feeds
+name: Update MMA Feeds & Rankings
 
 on:
   schedule:
@@ -23,21 +23,25 @@ jobs:
       - name: Install dependencies
         run: |
           npm init -y
-          npm install rss-parser node-fetch@2 date-fns
+          npm install rss-parser node-fetch@2 date-fns jsdom
 
-      - name: Fetch feeds and generate data
+      - name: Fetch news feeds
         run: node scripts/update-feeds.js
+
+      - name: Fetch UFC rankings
+        run: node scripts/update-rankings.js
+        continue-on-error: true   # don't fail the whole job if rankings temporarily break
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add feeds.json
+          git add feeds.json rankings.json
           
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update MMA feeds $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git commit -m "chore: update MMA feeds & rankings $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
           fi
