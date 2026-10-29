@@ -516,16 +516,10 @@
       overflow: hidden;
       min-height: 650px;
       width: 100%;
+      position: relative;
     }
     .x-embed-wrapper iframe {
       width: 100% !important;
-    }
-    .x-embed-wrapper a.twitter-timeline {
-      display: block;
-      color: var(--muted);
-      text-align: center;
-      padding: 2.5rem 1rem;
-      font-size: 0.9rem;
     }
 
   </style>
@@ -671,19 +665,16 @@
       <h2>X · Fighter Tweets</h2>
       <p class="sub">GOATs · Legends · Ranked fighters · Dana White · Joe Rogan & key MMA voices — updates live</p>
 
-      <div class="x-embed-wrapper">
-        <a class="twitter-timeline"
-           data-width="100%"
-           data-height="700"
-           data-theme="light"
-           data-chrome="noheader nofooter noborders transparent"
-           href="https://x.com/i/lists/2115676466876997970?ref_src=twsrc%5Etfw">
-          Tweets from CHAMA MMA List
-        </a>
+      <div class="x-embed-wrapper" id="x-timeline-container">
+        <div id="x-timeline-fallback" style="text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:0.9rem;">
+          Loading tweets from CHAMA MMA List…
+          <br><br>
+          <a href="https://x.com/i/lists/2115676466876997970" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">
+            Open list on X →
+          </a>
+        </div>
       </div>
     </div>
-
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   </main>
 
@@ -704,6 +695,10 @@
         html.setAttribute('data-theme', 'dark');
         btn.textContent = 'Light';
         localStorage.setItem('theme', 'dark');
+      }
+      // Notify X timeline to re-render with new theme
+      if (typeof window.reloadXTimeline === 'function') {
+        setTimeout(window.reloadXTimeline, 150);
       }
     }
 
@@ -863,6 +858,71 @@
 
     renderCountdowns();
     setInterval(renderCountdowns, 1000);
+
+
+
+    // ===== X List Timeline Loader =====
+    (function() {
+      const LIST_ID = "2115676466876997970";
+      const container = document.getElementById("x-timeline-container");
+      if (!container) return;
+
+      function getTheme() {
+        return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      }
+
+      function loadTimeline() {
+        if (typeof twttr === "undefined" || !twttr.widgets) {
+          return;
+        }
+
+        // Clear previous content
+        container.innerHTML = "";
+
+        twttr.widgets.createTimeline(
+          {
+            sourceType: "list",
+            id: LIST_ID
+          },
+          container,
+          {
+            height: 700,
+            theme: getTheme(),
+            chrome: "noheader nofooter noborders transparent",
+            dnt: true
+          }
+        ).then(function(el) {
+          // success
+        }).catch(function(err) {
+          console.warn("X timeline failed to load:", err);
+          container.innerHTML = `
+            <div style="text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:0.9rem;">
+              Could not load live timeline (X rate limit or temporary issue).<br><br>
+              <a href="https://x.com/i/lists/${LIST_ID}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">
+                View CHAMA MMA List on X →
+              </a>
+            </div>
+          `;
+        });
+      }
+
+      // Expose for theme toggle
+      window.reloadXTimeline = loadTimeline;
+
+      // Load the widgets script
+      if (!window.twttr) {
+        const script = document.createElement("script");
+        script.src = "https://platform.twitter.com/widgets.js";
+        script.charset = "utf-8";
+        script.async = true;
+        script.onload = function() {
+          setTimeout(loadTimeline, 400);
+        };
+        document.body.appendChild(script);
+      } else {
+        setTimeout(loadTimeline, 200);
+      }
+    })();
 
 
     // Start everything
