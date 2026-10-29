@@ -4,6 +4,14 @@ const { formatDistanceToNow } = require('date-fns');
 
 const parser = new Parser({
   timeout: 15000,
+  customFields: {
+    item: [
+      ['media:content', 'mediaContent', { keepArray: true }],
+      ['media:thumbnail', 'mediaThumbnail', { keepArray: true }],
+      ['content:encoded', 'contentEncoded'],
+      ['description', 'description']
+    ]
+  },
   headers: {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
     'Accept': 'application/rss+xml, application/xml, text/xml, */*',
@@ -13,7 +21,7 @@ const parser = new Parser({
   }
 });
 
-// UFC removed (blocked with 403). Bloody Elbow takes its place as first column.
+// UFC removed (blocked). Bloody Elbow first.
 const FEEDS = [
   {
     id: 'bloodyelbow',
@@ -38,6 +46,56 @@ const FEEDS = [
   }
 ];
 
+function extractImage(item) {
+  // 1. Standard enclosure
+  if (item.enclosure?.url && /\.(jpg|jpeg|png|webp|gif)/i.test(item.enclosure.url)) {
+    return item.enclosure.url;
+  }
+
+  // 2. media:content / media:thumbnail (from customFields)
+  if (item.mediaContent) {
+    const arr = Array.isArray(item.mediaContent) ? item.mediaContent : [item.mediaContent];
+    for (const m of arr) {
+      const url = m?.$?.url || m?.url;
+      if (url && /\.(jpg|jpeg|png|webp|gif)/i.test(url)) return url;
+    }
+  }
+  if (item.mediaThumbnail) {
+    const arr = Array.isArray(item.mediaThumbnail) ? item.mediaThumbnail : [item.mediaThumbnail];
+    for (const m of arr) {
+      const url = m?.$?.url || m?.url;
+      if (url) return url;
+    }
+  }
+
+  // 3. Pull first <img src="..."> from HTML content
+  const htmlSources = [
+    item.contentEncoded,
+    item['content:encoded'],
+    item.content,
+    item.description,
+    item.summary,
+    item.contentSnippet
+  ].filter(Boolean);
+
+  for (const html of htmlSources) {
+    // Match src="..." or src='...'
+    const match = String(html).match(/<img[^>]+src=["']([^"']+)["']/i);
+    if (match && match[1]) {
+      let src = match[1]
+        .replace(/&amp;/g, '&')
+        .replace(/&#038;/g, '&')
+        .trim();
+      // Skip tiny icons / tracking pixels
+      if (src && !/pixel|1x1|spacer|blank|logo-small/i.test(src)) {
+        return src;
+      }
+    }
+  }
+
+  return null;
+}
+
 async function fetchFeed(feedConfig) {
   try {
     console.log(`Fetching ${feedConfig.name}...`);
@@ -57,16 +115,20 @@ async function fetchFeed(feedConfig) {
           }
         }
 
+        const image = extractImage(item);
+
         return {
           title: (item.title || 'Untitled').trim(),
           link: item.link || item.guid || '#',
           date: published || null,
           relative,
-          image: item.enclosure?.url || item['media:content']?.$?.url || null
+          image
         };
       });
 
-    console.log(`  → ${items.length} items`);
+    const withImages = items.filter(i => i.image).length;
+    console.log(`  → ${items.length} items (${withImages} with images)`);
+
     return {
       id: feedConfig.id,
       name: feedConfig.name,
