@@ -1,12 +1,19 @@
 {
-  "generatedAt": "2026-10-31T14:58:35.456Z",
+  "generatedAt": "2026-10-31T15:27:44.719Z",
   "sources": [
     {
       "id": "bloodyelbow",
       "name": "Bloody Elbow",
       "site": "https://bloodyelbow.com/",
-      "updated": "2026-10-31T14:58:35.335Z",
+      "updated": "2026-10-31T15:27:44.598Z",
       "items": [
+        {
+          "title": "Michael Chandler officially set to make debut WWE appearance following prior contract talks",
+          "link": "https://bloodyelbow.com/2026/10/31/michael-chandler-officially-set-to-make-debut-wwe-appearance-following-prior-contract-talks/",
+          "date": "2026-10-31T15:00:00.000Z",
+          "relative": "28 minutes ago",
+          "image": "https://cdn1.bloodyelbow.com/uploads/1/2025/08/GettyImages-2203874651-scaled.jpg"
+        },
         {
           "title": "UFC contender’s brother called ‘most dangerous teen in the world’ after vicious first-round KO",
           "link": "https://bloodyelbow.com/2026/10/31/ufc-contenders-brother-called-most-dangerous-teen-in-the-world-after-vicious-first-round-ko/",
@@ -41,13 +48,6 @@
           "date": "2026-10-31T06:00:00.000Z",
           "relative": "about 9 hours ago",
           "image": "https://cdn1.bloodyelbow.com/uploads/1/2025/06/GettyImages-2222666575-scaled.jpg"
-        },
-        {
-          "title": "World champion boxer sings for Canelo Alvarez at bizarre weigh-in ahead of controversial Riyadh fight",
-          "link": "https://bloodyelbow.com/2026/10/31/world-champion-boxer-sings-for-canelo-alvarez-at-bizarre-weigh-in-ahead-of-controversial-riyadh-fight/",
-          "date": "2026-10-31T05:00:00.000Z",
-          "relative": "about 10 hours ago",
-          "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/10/GettyImages-2302215645-scaled.jpg"
         }
       ]
     },
@@ -55,8 +55,15 @@
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-31T14:58:35.456Z",
+      "updated": "2026-10-31T15:27:44.719Z",
       "items": [
+        {
+          "title": "UFC Vegas 123’s Jacobe Smith reacts to Dominick Reyes ‘talking sh*t’ about coach Daniel Cormier’s commentary",
+          "link": "https://www.mmafighting.com/ufc/518435/ufc-vegas-123s-jacobe-smith-reacts-to-dominick-reyes-talking-sht-about-coach-daniel-cormiers-commentary",
+          "date": "2026-10-31T15:00:00.000Z",
+          "relative": "28 minutes ago",
+          "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/08/gettyimages-2285693066.jpg?quality=90&strip=all&crop=0,0,100,100"
+        },
         {
           "title": "Canelo vs. Mbilli Results: LIVE updates of the undercard and main event",
           "link": "https://www.mmafighting.com/boxing/518501/canelo-vs-mbilli-results-live-updates-undercard-main-event",
@@ -89,15 +96,8 @@
           "title": "Canelo Alvarez vs. Christian Mbilli live round-by-round updates",
           "link": "https://www.mmafighting.com/boxing/518512/canelo-alvarez-vs-christian-mbilli-live-round-by-round-updates-boxing",
           "date": "2026-10-31T04:30:00.000Z",
-          "relative": "about 10 hours ago",
+          "relative": "about 11 hours ago",
           "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2302197922.jpg?quality=90&strip=all&crop=0,0,100,100"
-        },
-        {
-          "title": "Luana Santos: UFC title shot ‘definitely possible’ with win over Yana Santos",
-          "link": "https://www.mmafighting.com/ufc/518290/luana-santos-ufc-title-shot-definitely-possible-with-win-over-yana-santos",
-          "date": "2026-10-31T00:00:00.000Z",
-          "relative": "about 15 hours ago",
-          "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2251792059.jpg?quality=90&strip=all&crop=0,0,100,100"
         }
       ]
     },
@@ -105,13 +105,13 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-31T14:58:35.420Z",
+      "updated": "2026-10-31T15:27:44.654Z",
       "items": [
         {
           "title": "UFC Vegas 123 ‘Moicano vs. Nolan’ play-by-play, results & round scoring",
           "link": "https://www.sherdog.com/news/news/UFC-Vegas-123-Moicano-vs-Nolan-playbyplay-results-round-scoring-203430",
           "date": "2026-10-31T23:57:07.000Z",
-          "relative": "in about 9 hours",
+          "relative": "in about 8 hours",
           "image": null
         },
         {
