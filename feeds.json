@@ -1,24 +1,31 @@
 {
-  "generatedAt": "2026-10-31T04:30:17.247Z",
+  "generatedAt": "2026-10-31T05:14:37.651Z",
   "sources": [
     {
       "id": "bloodyelbow",
       "name": "Bloody Elbow",
       "site": "https://bloodyelbow.com/",
-      "updated": "2026-10-31T04:30:17.153Z",
+      "updated": "2026-10-31T05:14:37.620Z",
       "items": [
+        {
+          "title": "World champion boxer sings for Canelo Alvarez at bizarre weigh-in ahead of controversial Riyadh fight",
+          "link": "https://bloodyelbow.com/2026/10/31/world-champion-boxer-sings-for-canelo-alvarez-at-bizarre-weigh-in-ahead-of-controversial-riyadh-fight/",
+          "date": "2026-10-31T05:00:00.000Z",
+          "relative": "15 minutes ago",
+          "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/10/GettyImages-2302215645-scaled.jpg"
+        },
         {
           "title": "Jiri Prochazka spars with kickboxer who beat Alex Pereira ahead of his UFC Qatar fight",
           "link": "https://bloodyelbow.com/2026/10/30/jiri-prochazka-spars-with-kickboxer-who-beat-alex-pereira-ahead-of-his-ufc-qatar-fight/",
           "date": "2026-10-31T03:30:00.000Z",
-          "relative": "about 1 hour ago",
+          "relative": "about 2 hours ago",
           "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/02/GettyImages-2240853088-scaled.jpg"
         },
         {
           "title": "Shavkat Rakhmonov’s UFC return facing another delay as his manager shuts down rumored fight",
           "link": "https://bloodyelbow.com/2026/10/30/shavkat-rakhmonovs-ufc-return-facing-another-delay-as-his-manager-shuts-down-rumored-fight/",
           "date": "2026-10-31T02:30:00.000Z",
-          "relative": "about 2 hours ago",
+          "relative": "about 3 hours ago",
           "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/10/GettyImages-2188815534-scaled.jpg"
         },
         {
@@ -32,7 +39,7 @@
           "title": "Colby Covington surprisingly defends Islam Makhachev’s UFC absence amid criticism",
           "link": "https://bloodyelbow.com/2026/10/30/colby-covington-surprisingly-defends-islam-makhachevs-ufc-absence-amid-criticism/",
           "date": "2026-10-30T23:30:00.000Z",
-          "relative": "about 5 hours ago",
+          "relative": "about 6 hours ago",
           "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/08/GettyImages-2290667910-scaled.jpg"
         },
         {
@@ -41,13 +48,6 @@
           "date": "2026-10-30T22:00:00.000Z",
           "relative": "about 7 hours ago",
           "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/09/GettyImages-2296161532-scaled.jpg"
-        },
-        {
-          "title": "Hasbulla brands Mike Tyson his ‘best friend’ as pair reunite at DF Uncaged in Jordan",
-          "link": "https://bloodyelbow.com/2026/10/30/hasbulla-brands-mike-tyson-his-best-friend-as-pair-reunite-at-df-uncaged-in-jordan/",
-          "date": "2026-10-30T20:30:00.000Z",
-          "relative": "about 8 hours ago",
-          "image": "https://cdn1.bloodyelbow.com/uploads/1/2026/10/Mike-Tyson-Hasbulla.png"
         }
       ]
     },
@@ -55,13 +55,20 @@
       "id": "mmafighting",
       "name": "MMA Fighting",
       "site": "https://www.mmafighting.com/",
-      "updated": "2026-10-31T04:30:17.186Z",
+      "updated": "2026-10-31T05:14:37.651Z",
       "items": [
+        {
+          "title": "Canelo Alvarez vs. Christian Mbilli live round-by-round updates",
+          "link": "https://www.mmafighting.com/boxing/518512/canelo-alvarez-vs-christian-mbilli-live-round-by-round-updates-boxing",
+          "date": "2026-10-31T04:30:00.000Z",
+          "relative": "about 1 hour ago",
+          "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2302197922.jpg?quality=90&strip=all&crop=0,0,100,100"
+        },
         {
           "title": "Canelo vs. Mbilli Results: Live updates of the undercard and main event",
           "link": "https://www.mmafighting.com/boxing/518501/canelo-vs-mbilli-results-live-updates-undercard-main-event",
           "date": "2026-10-31T04:00:00.000Z",
-          "relative": "30 minutes ago",
+          "relative": "about 1 hour ago",
           "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2302193464.jpg?quality=90&strip=all&crop=0,0,100,100"
         },
         {
@@ -91,13 +98,6 @@
           "date": "2026-10-30T21:00:00.000Z",
           "relative": "about 8 hours ago",
           "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/Screenshot-2026-10-30-at-3.31.22-PM.png?quality=90&strip=all&crop=0,0,100,100"
-        },
-        {
-          "title": "Sean Brady reveals injury that forced him out of UFC Vegas 124 main event",
-          "link": "https://www.mmafighting.com/ufc/518528/sean-brady-reveals-injury-that-forced-him-out-of-ufc-vegas-124-main-event",
-          "date": "2026-10-30T20:00:00.000Z",
-          "relative": "about 9 hours ago",
-          "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/10/gettyimages-2275379932.jpg?quality=90&strip=all&crop=0,0,100,100"
         }
       ]
     },
@@ -105,7 +105,7 @@
       "id": "sherdog",
       "name": "Sherdog",
       "site": "https://www.sherdog.com/",
-      "updated": "2026-10-31T04:30:17.247Z",
+      "updated": "2026-10-31T05:14:37.540Z",
       "items": [
         {
           "title": "UFC Vegas 123 ‘Moicano vs. Nolan’ play-by-play, results & round scoring",
@@ -118,7 +118,7 @@
           "title": "UFC Vegas 123 weigh-in results: Main event set; 1 fighter misses weight",
           "link": "https://www.sherdog.com/news/news/UFC-Vegas-123-weighin-results-Main-event-set-1-fighter-misses-weight-203428",
           "date": "2026-10-30T14:14:27.000Z",
-          "relative": "about 14 hours ago",
+          "relative": "about 15 hours ago",
           "image": null
         },
         {
